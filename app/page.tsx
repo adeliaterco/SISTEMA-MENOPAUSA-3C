@@ -142,7 +142,7 @@ export default function MenopausaLanding() {
               size="lg"
               className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base md:text-xl px-4 md:px-8 py-3 md:py-4 pulse-glow mx-1 max-w-full"
             >
-              <span className="truncate">REATIVAR MEUS 3 COMBUSTÍVEIS POR R$ 97</span>
+              <span className="truncate">REATIVAR MEUS 3 COMBUSTÍVEIS AGORA</span>
             </Button>
           </div>
         </section>
@@ -481,7 +481,7 @@ export default function MenopausaLanding() {
               size="lg"
               className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base md:text-xl px-4 md:px-8 py-3 md:py-4 pulse-glow mx-1 max-w-full mt-6"
             >
-              <span className="truncate">REATIVAR MEUS 3 COMBUSTÍVEIS POR R$ 97</span>
+              <span className="truncate">QUERO REATIVAR MEUS 3 COMBUSTÍVEIS</span>
             </Button>
           </div>
         </section>
