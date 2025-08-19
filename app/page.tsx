@@ -76,8 +76,7 @@ export default function MenopausaLanding() {
         <section className="bg-gradient-to-b from-muted to-background py-6 px-3 md:py-12 md:px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-5xl text-primary mb-3 md:mb-6 font-[family-name:var(--font-space-grotesk)] leading-tight px-1">
-              Por Que Você Esquece Palavras Básicas e Explode de Raiva: A Descoberta Científica Que Está Salvando
-              Casamentos (E Como Reverter em 21 Dias)
+              Como Parar de Esquecer Palavras e Explodir de Raiva em 21 Dias
             </h1>
             <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground mb-4 md:mb-8 font-semibold leading-relaxed px-1">
               Se você acorda às 3h pensando 'será que eu tô ficando louca?', não é hormônio - é seu cérebro pedindo
@@ -126,13 +125,13 @@ export default function MenopausaLanding() {
 
             <div className="flex justify-center gap-1 mb-4 md:mb-8 flex-wrap px-1">
               <Badge className="bg-green-500 text-white text-xs md:text-sm px-2 py-1">
-                ✅ Combustível 1: Estrogênio Cerebral
+                ✅ Combustível 1: MEMÓRIA
               </Badge>
               <Badge className="bg-green-500 text-white text-xs md:text-sm px-2 py-1">
-                ✅ Combustível 2: Glicose Neural
+                ✅ Combustível 2: CONCENTRAÇÃO
               </Badge>
               <Badge className="bg-green-500 text-white text-xs md:text-sm px-2 py-1">
-                ✅ Combustível 3: Neurotransmissores
+                ✅ Combustível 3: CONTROLE EMOCIONAL
               </Badge>
               <Badge className="bg-green-500 text-white text-xs md:text-sm px-2 py-1">✅ Resultados em 21 Dias</Badge>
             </div>
@@ -142,7 +141,7 @@ export default function MenopausaLanding() {
               size="lg"
               className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base md:text-xl px-4 md:px-8 py-3 md:py-4 pulse-glow mx-1 max-w-full"
             >
-              <span className="truncate">REATIVAR MEUS 3 COMBUSTÍVEIS AGORA</span>
+              <span className="truncate">QUERO VOLTAR AO NORMAL EM 21 DIAS</span>
             </Button>
           </div>
         </section>
@@ -309,7 +308,7 @@ export default function MenopausaLanding() {
             </div>
 
             <div className="bg-red-50 border-2 border-red-200 p-4 md:p-6 rounded-lg mb-6 md:mb-8 mx-1">
-                          <div className="mb-6 md:mb-8">
+              <div className="mb-6 md:mb-8">
                 <img
                   src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/professional-split-screen-photograph-of-_M5O74O7yTjyI0tzxI_80gg_uqncdrQmQVe1ju5ZLoyRQA.jpeg"
                   alt="Imagem personalizada 16:9"
@@ -421,15 +420,15 @@ export default function MenopausaLanding() {
                 <CardContent className="p-0">
                   <Brain className="w-10 h-10 md:w-16 md:h-16 text-secondary mx-auto mb-3" />
                   <h3 className="font-bold text-base md:text-xl mb-2 text-primary">COMBUSTÍVEL 1</h3>
-                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">Estrogênio Cerebral</h4>
+                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">MEMÓRIA</h4>
                   <p className="text-xs md:text-sm mb-2">
-                    <strong>O que é:</strong> Estrogênio produzido pelo próprio cérebro (diferente do dos ovários)
+                    <strong>O que é:</strong> Reativa a produção cerebral de estrogênio
                   </p>
                   <p className="text-xs md:text-sm mb-2">
                     <strong>Quando falta:</strong> "Brancos na mente", esquece palavras básicas
                   </p>
                   <p className="text-xs md:text-sm font-bold text-green-600">
-                    <strong>Resultado em 7 dias:</strong> Volta a lembrar das palavras
+                    <strong>Resultado em 7 dias:</strong> Para de esquecer palavras
                   </p>
                 </CardContent>
               </Card>
@@ -438,15 +437,15 @@ export default function MenopausaLanding() {
                 <CardContent className="p-0">
                   <Zap className="w-10 h-10 md:w-16 md:h-16 text-secondary mx-auto mb-3" />
                   <h3 className="font-bold text-base md:text-xl mb-2 text-primary">COMBUSTÍVEL 2</h3>
-                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">Glicose Neural</h4>
+                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">CONCENTRAÇÃO</h4>
                   <p className="text-xs md:text-sm mb-2">
-                    <strong>O que é:</strong> Açúcar específico que alimenta a memória e concentração
+                    <strong>O que é:</strong> Açúcar específico que alimenta a memória e foco
                   </p>
                   <p className="text-xs md:text-sm mb-2">
                     <strong>Quando falta:</strong> Não consegue se concentrar, esquece onde colocou as coisas
                   </p>
                   <p className="text-xs md:text-sm font-bold text-green-600">
-                    <strong>Resultado em 14 dias:</strong> Concentração e memória melhores que aos 40
+                    <strong>Resultado em 14 dias:</strong> Foco total de volta
                   </p>
                 </CardContent>
               </Card>
@@ -455,7 +454,7 @@ export default function MenopausaLanding() {
                 <CardContent className="p-0">
                   <Heart className="w-10 h-10 md:w-16 md:h-16 text-secondary mx-auto mb-3" />
                   <h3 className="font-bold text-base md:text-xl mb-2 text-primary">COMBUSTÍVEL 3</h3>
-                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">Neurotransmissores</h4>
+                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">CONTROLE EMOCIONAL</h4>
                   <p className="text-xs md:text-sm mb-2">
                     <strong>O que é:</strong> Serotonina, dopamina e GABA equilibrados
                   </p>
@@ -463,7 +462,7 @@ export default function MenopausaLanding() {
                     <strong>Quando falta:</strong> Explode de raiva, acorda às 3h, ansiedade
                   </p>
                   <p className="text-xs md:text-sm font-bold text-green-600">
-                    <strong>Resultado em 21 dias:</strong> Controle emocional total
+                    <strong>Resultado em 21 dias:</strong> Para de explodir
                   </p>
                 </CardContent>
               </Card>
@@ -481,8 +480,94 @@ export default function MenopausaLanding() {
               size="lg"
               className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base md:text-xl px-4 md:px-8 py-3 md:py-4 pulse-glow mx-1 max-w-full mt-6"
             >
-              <span className="truncate">QUERO REATIVAR MEUS 3 COMBUSTÍVEIS</span>
+              <span className="truncate">QUERO VOLTAR AO NORMAL EM 21 DIAS</span>
             </Button>
+          </div>
+        </section>
+
+        {/* NOVA SEÇÃO ANTES/DEPOIS */}
+        <section className="py-8 md:py-16 px-3 md:px-4 bg-gradient-to-r from-red-50 to-green-50">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
+              ANTES vs DEPOIS dos 3 Combustíveis
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+              <Card className="p-4 md:p-6 border-2 border-red-500 bg-red-50">
+                <CardContent className="p-0">
+                  <h3 className="font-bold text-lg md:text-xl mb-4 text-red-700 text-center">
+                    ❌ ANTES (Cérebro sem combustível)
+                  </h3>
+                  <div className="space-y-3 text-sm md:text-base">
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-500">❌</span>
+                      <span>Esquece palavras no meio da frase</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-500">❌</span>
+                      <span>Explode de raiva por bobagem</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-500">❌</span>
+                      <span>Família evita conversar com você</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-500">❌</span>
+                      <span>Não consegue se concentrar</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-500">❌</span>
+                      <span>Acorda às 3h da manhã</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-500">❌</span>
+                      <span>Pensa: "Será que vou ficar assim para sempre?"</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="p-4 md:p-6 border-2 border-green-500 bg-green-50">
+                <CardContent className="p-0">
+                  <h3 className="font-bold text-lg md:text-xl mb-4 text-green-700 text-center">
+                    ✅ DEPOIS (3 combustíveis ativos)
+                  </h3>
+                  <div className="space-y-3 text-sm md:text-base">
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-500">✅</span>
+                      <span>Lembra de tudo como aos 40</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-500">✅</span>
+                      <span>Controle emocional total</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-500">✅</span>
+                      <span>Família diz: "Você voltou!"</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-500">✅</span>
+                      <span>Concentração melhor que aos 40</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-500">✅</span>
+                      <span>Dorme 8 horas seguidas</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-500">✅</span>
+                      <span>Sabe: "Eu voltei ao normal!"</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="bg-card p-4 md:p-6 rounded-lg text-center mt-6 md:mt-8">
+              <p className="text-base md:text-lg font-bold text-primary mb-2">
+                "Em 21 dias, meu marido disse: 'A mulher que me casei voltou.'"
+              </p>
+              <p className="text-sm text-muted-foreground">- Maria Santos, 54 anos</p>
+            </div>
           </div>
         </section>
 
@@ -512,7 +597,7 @@ export default function MenopausaLanding() {
                 <CardContent className="p-0">
                   <div className="flex items-center gap-2 mb-2 md:mb-3">
                     <Brain className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-                    <h3 className="font-bold text-sm md:text-base">COMBUSTÍVEL 1: Reativação do Estrogênio Cerebral</h3>
+                    <h3 className="font-bold text-sm md:text-base">COMBUSTÍVEL 1: Reativação da Memória</h3>
                   </div>
                   <ul className="space-y-1 text-xs md:text-sm">
                     <li>• Protocolo de 7 dias que reativa a produção cerebral</li>
@@ -527,7 +612,7 @@ export default function MenopausaLanding() {
                 <CardContent className="p-0">
                   <div className="flex items-center gap-2 mb-2 md:mb-3">
                     <Zap className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-                    <h3 className="font-bold text-sm md:text-base">COMBUSTÍVEL 2: Protocolo da Glicose Neural</h3>
+                    <h3 className="font-bold text-sm md:text-base">COMBUSTÍVEL 2: Protocolo da Concentração</h3>
                   </div>
                   <ul className="space-y-1 text-xs md:text-sm">
                     <li>• Como ensinar seu cérebro a usar açúcar eficientemente</li>
@@ -543,7 +628,7 @@ export default function MenopausaLanding() {
                   <div className="flex items-center gap-2 mb-2 md:mb-3">
                     <Heart className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
                     <h3 className="font-bold text-sm md:text-base">
-                      COMBUSTÍVEL 3: Reequilíbrio dos Neurotransmissores
+                      COMBUSTÍVEL 3: Reequilíbrio do Controle Emocional
                     </h3>
                   </div>
                   <ul className="space-y-1 text-xs md:text-sm">
@@ -573,33 +658,26 @@ export default function MenopausaLanding() {
 
             <div className="bg-accent p-3 md:p-6 rounded-lg mx-1">
               <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-accent-foreground text-center">
-                BÔNUS EXCLUSIVOS (Valor: R$ 397)
+                BÔNUS EXCLUSIVOS (Valor: R$ 291)
               </h3>
-              <div className="grid grid-cols-2 lg:grid-cols-5 gap-2 md:gap-3">
-                <div className="bg-accent-foreground text-accent p-2 md:p-3 rounded text-center">
-                  <CheckCircle className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1" />
-                  <p className="font-bold text-xs md:text-sm">BÔNUS 1</p>
-                  <p className="text-xs">Checklist dos 3 Combustíveis</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                <div className="bg-accent-foreground text-accent p-3 md:p-4 rounded text-center">
+                  <CheckCircle className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2" />
+                  <p className="font-bold text-sm md:text-base">BÔNUS 1</p>
+                  <p className="text-xs md:text-sm">Checklist dos 3 Combustíveis</p>
+                  <p className="text-xs font-bold text-green-600 mt-1">(R$ 127)</p>
                 </div>
-                <div className="bg-accent-foreground text-accent p-2 md:p-3 rounded text-center">
-                  <BookOpen className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1" />
-                  <p className="font-bold text-xs md:text-sm">BÔNUS 2</p>
-                  <p className="text-xs">Guia "Como Falar com Seu Médico"</p>
+                <div className="bg-accent-foreground text-accent p-3 md:p-4 rounded text-center">
+                  <BookOpen className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2" />
+                  <p className="font-bold text-sm md:text-base">BÔNUS 2</p>
+                  <p className="text-xs md:text-sm">Cardápio Cerebral Completo</p>
+                  <p className="text-xs font-bold text-green-600 mt-1">(R$ 97)</p>
                 </div>
-                <div className="bg-accent-foreground text-accent p-2 md:p-3 rounded text-center">
-                  <Users className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1" />
-                  <p className="font-bold text-xs md:text-sm">BÔNUS 3</p>
-                  <p className="text-xs">Cardápio dos 3 Combustíveis</p>
-                </div>
-                <div className="bg-accent-foreground text-accent p-2 md:p-3 rounded text-center">
-                  <Shield className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1" />
-                  <p className="font-bold text-xs md:text-sm">BÔNUS 4</p>
-                  <p className="text-xs">SOS Família</p>
-                </div>
-                <div className="bg-accent-foreground text-accent p-2 md:p-3 rounded text-center">
-                  <Award className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1" />
-                  <p className="font-bold text-xs md:text-sm">BÔNUS 5</p>
-                  <p className="text-xs">Kit Emergência</p>
+                <div className="bg-accent-foreground text-accent p-3 md:p-4 rounded text-center">
+                  <Users className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2" />
+                  <p className="font-bold text-sm md:text-base">BÔNUS 3</p>
+                  <p className="text-xs md:text-sm">SOS Família</p>
+                  <p className="text-xs font-bold text-green-600 mt-1">(R$ 67)</p>
                 </div>
               </div>
             </div>
@@ -756,27 +834,64 @@ export default function MenopausaLanding() {
           </div>
         </section>
 
+        {/* NOVA SEÇÃO DE OBJEÇÕES */}
         <section className="py-8 md:py-16 px-3 md:px-4 bg-muted/30">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
+              "MAS EU JÁ TENTEI DE TUDO..."
+            </h2>
+
+            <div className="bg-red-50 border-2 border-red-200 p-4 md:p-6 rounded-lg mb-6 md:mb-8">
+              <h3 className="text-lg md:text-xl font-bold text-red-700 mb-4 text-center">
+                Entendo sua frustração. Você provavelmente tentou:
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-red-500">❌</span>
+                    <span className="text-sm md:text-base">Reposição hormonal</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-red-500">❌</span>
+                    <span className="text-sm md:text-base">Antidepressivos</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-red-500">❌</span>
+                    <span className="text-sm md:text-base">Suplementos caros</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-red-500">❌</span>
+                    <span className="text-sm md:text-base">Terapias diversas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-green-50 border-2 border-green-200 p-4 md:p-6 rounded-lg">
+              <h3 className="text-lg md:text-xl font-bold text-green-700 mb-4 text-center">
+                Nada funcionou porque você estava tratando os SINTOMAS
+              </h3>
+              <p className="text-sm md:text-base text-green-800 text-center mb-4">
+                Os 3 combustíveis atacam a CAUSA raiz. É por isso que funciona em 21 dias.
+              </p>
+              <div className="bg-green-100 p-3 md:p-4 rounded-lg">
+                <p className="text-sm md:text-base font-bold text-green-900 text-center">
+                  ✅ Diferente de tudo que você já tentou - trata a causa, não os sintomas
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-8 md:py-16 px-3 md:px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
               Superando Suas Dúvidas
             </h2>
 
             <div className="space-y-4 md:space-y-6">
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg mb-3 text-red-600">"Já tentei de tudo, nada funciona comigo..."</h3>
-                  <p className="text-sm md:text-base mb-3">
-                    <strong>Entendo sua frustração.</strong> Você provavelmente tentou tratar os sintomas, não a causa.
-                    Os 3 combustíveis cerebrais atacam a RAIZ do problema. É por isso que 94% das mulheres veem
-                    resultados em 21 dias.
-                  </p>
-                  <p className="text-sm font-bold text-green-600">
-                    ✅ Diferente de tudo que você já tentou - trata a causa, não os sintomas
-                  </p>
-                </CardContent>
-              </Card>
-
               <Card className="p-4 md:p-6">
                 <CardContent className="p-0">
                   <h3 className="font-bold text-lg mb-3 text-red-600">"Será que funciona na minha idade?"</h3>
@@ -811,6 +926,30 @@ export default function MenopausaLanding() {
                   </p>
                   <p className="text-sm font-bold text-green-600">
                     ✅ Bônus: Guia para conversar com seu médico sobre os combustíveis
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="p-4 md:p-6">
+                <CardContent className="p-0">
+                  <h3 className="font-bold text-lg mb-3 text-red-600">"Preciso comprar suplementos caros?"</h3>
+                  <p className="text-sm md:text-base mb-3">
+                    <strong>Não!</strong> O Sistema usa alimentos e técnicas naturais. Tudo que você precisa está disponível em qualquer
+                    supermercado ou farmácia comum.
+                  </p>
+                  <p className="text-sm font-bold text-green-600">✅ Apenas alimentos naturais e técnicas simples</p>
+                </CardContent>
+              </Card>
+
+              <Card className="p-4 md:p-6">
+                <CardContent className="p-0">
+                  <h3 className="font-bold text-lg mb-3 text-red-600">"Funciona se eu já faço reposição hormonal?"</h3>
+                  <p className="text-sm md:text-base mb-3">
+                    <strong>Sim!</strong> Os 3 combustíveis cerebrais são complementares à reposição hormonal. Muitas clientes que fazem
+                    TRH tiveram resultados ainda melhores.
+                  </p>
+                  <p className="text-sm font-bold text-green-600">
+                    ✅ Complementa perfeitamente a reposição hormonal
                   </p>
                 </CardContent>
               </Card>
@@ -922,7 +1061,7 @@ export default function MenopausaLanding() {
                       <span className="font-bold">R$ 97</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>5 Bônus exclusivos</span>
+                      <span>3 Bônus exclusivos</span>
                       <span className="font-bold text-green-600">GRÁTIS</span>
                     </div>
                     <div className="flex justify-between">
@@ -978,26 +1117,6 @@ export default function MenopausaLanding() {
 
               <Card className="p-4 md:p-6">
                 <CardContent className="p-0">
-                  <h3 className="font-bold text-base md:text-lg mb-2">❓ Preciso comprar suplementos caros?</h3>
-                  <p className="text-sm md:text-base">
-                    Não! O Sistema usa alimentos e técnicas naturais. Tudo que você precisa está disponível em qualquer
-                    supermercado ou farmácia comum.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-base md:text-lg mb-2">❓ Funciona se eu já faço reposição hormonal?</h3>
-                  <p className="text-sm md:text-base">
-                    Sim! Os 3 combustíveis cerebrais são complementares à reposição hormonal. Muitas clientes que fazem
-                    TRH tiveram resultados ainda melhores.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
                   <h3 className="font-bold text-base md:text-lg mb-2">❓ Como funciona a garantia?</h3>
                   <p className="text-sm md:text-base">
                     Você tem 3 garantias: resultados em 7, 14 e 21 dias. Se qualquer uma falhar, devolvemos 100% do seu
@@ -1038,7 +1157,7 @@ export default function MenopausaLanding() {
 
             <div className="bg-card p-4 md:p-6 rounded-lg mb-6 md:mb-8">
               <div className="text-center mb-4">
-                <p className="text-sm text-muted-foreground line-through">De R$ 497 por</p>
+                <p className="text-sm text-muted-foreground line-through">De R$ 388 por</p>
                 <p className="text-3xl md:text-5xl font-bold text-secondary">R$ 97</p>
                 <p className="text-sm text-muted-foreground">ou 12x de R$ 9,70</p>
               </div>
@@ -1050,7 +1169,7 @@ export default function MenopausaLanding() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>✅ 5 bônus exclusivos (valor R$ 397)</span>
+                  <span>✅ 3 bônus exclusivos (valor R$ 291)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
@@ -1072,7 +1191,7 @@ export default function MenopausaLanding() {
               size="lg"
               className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-lg md:text-2xl px-6 md:px-12 py-4 md:py-6 pulse-glow mb-4"
             >
-              REATIVAR MEUS 3 COMBUSTÍVEIS POR R$ 97
+              QUERO VOLTAR AO NORMAL EM 21 DIAS
             </Button>
 
             <p className="text-xs md:text-sm text-muted-foreground mb-4">
