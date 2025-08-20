@@ -1058,7 +1058,7 @@ export default function MenopausaLanding() {
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span>Sistema completo</span>
-                      <span className="font-bold">R$ 97</span>
+                      <span className="font-bold">R$ 37</span>
                     </div>
                     <div className="flex justify-between">
                       <span>3 Bônus exclusivos</span>
@@ -1079,7 +1079,7 @@ export default function MenopausaLanding() {
                     <hr className="border-green-300" />
                     <div className="flex justify-between font-bold text-lg">
                       <span>TOTAL:</span>
-                      <span className="text-green-700">R$ 97</span>
+                      <span className="text-green-700">R$ 37</span>
                     </div>
                     <p className="text-xs text-green-600 text-center">*Com garantia tripla de resultados</p>
                   </div>
@@ -1088,7 +1088,7 @@ export default function MenopausaLanding() {
             </div>
 
             <div className="bg-accent p-4 md:p-6 rounded-lg text-center">
-              <p className="text-lg md:text-xl font-bold text-accent-foreground mb-2">ECONOMIA ANUAL: R$ 6.703</p>
+              <p className="text-lg md:text-xl font-bold text-accent-foreground mb-2">ECONOMIA ANUAL: R$ 6.763</p>
               <p className="text-sm text-accent-foreground">
                 Você economiza mais de R$ 6.700 por ano e ainda tem garantia de resultados em 21 dias
               </p>
@@ -1145,7 +1145,7 @@ export default function MenopausaLanding() {
                 <Users className="w-6 h-6 text-red-600" />
                 <h3 className="text-lg md:text-xl font-bold text-red-700">🚨 ÚLTIMAS {vagasRestantes} VAGAS</h3>
               </div>
-              <p className="text-sm md:text-base text-red-800 mb-2">Após esgotar, só no próximo mês por R$ 1.200</p>
+              <p className="text-sm md:text-base text-red-800 mb-2">Após esgotar, só no próximo mês por R$ 297</p>
               <p className="text-xs md:text-sm font-bold text-red-900">
                 Limitamos para garantir suporte individualizado
               </p>
@@ -1157,9 +1157,9 @@ export default function MenopausaLanding() {
 
             <div className="bg-card p-4 md:p-6 rounded-lg mb-6 md:mb-8">
               <div className="text-center mb-4">
-                <p className="text-sm text-muted-foreground line-through">De R$ 388 por</p>
-                <p className="text-3xl md:text-5xl font-bold text-secondary">R$ 97</p>
-                <p className="text-sm text-muted-foreground">ou 12x de R$ 9,70</p>
+                <p className="text-sm text-muted-foreground line-through">De R$ 297 por</p>
+                <p className="text-3xl md:text-5xl font-bold text-secondary">R$ 37</p>
+                <p className="text-sm text-muted-foreground">ou 12x de R$ 3,70</p>
               </div>
 
               <div className="space-y-2 text-sm text-left max-w-md mx-auto">
