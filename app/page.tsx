@@ -1159,7 +1159,7 @@ export default function MenopausaLanding() {
               <div className="text-center mb-4">
                 <p className="text-sm text-muted-foreground line-through">De R$ 297 por</p>
                 <p className="text-3xl md:text-5xl font-bold text-secondary">R$ 37</p>
-                <p className="text-sm text-muted-foreground">ou 12x de R$ 3,70</p>
+                <p className="text-sm text-muted-foreground">ou 9x de R$ 5,02</p>
               </div>
 
               <div className="space-y-2 text-sm text-left max-w-md mx-auto">
