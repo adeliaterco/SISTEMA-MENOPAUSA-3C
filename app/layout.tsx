@@ -17,9 +17,9 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "SOS Menopausa - Reconecte Cérebro e Ovários em 21 Dias",
+  title: "Protocolo Menopausa Leve",
   description:
-    "Descubra o protocolo natural que restaura a conexão cérebro-ovário e elimina os sintomas da menopausa em 21 dias. Pare de esquecer palavras, controle os fogachos e recupere sua vida.",
+    "MÉDICA BRASILEIRA DESCOBRE MÉTODO QUE ELIMINA MENOPAUSA EM 14 DIAS",
   generator: "v0.app",
 }
 
