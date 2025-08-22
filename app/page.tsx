@@ -470,7 +470,7 @@ export default function MenopausaLanding() {
                     </div>
                   </div>
                   <p className="text-sm mb-3 leading-relaxed">
-                    "Estava gastando R\$ 800 por mês em hormônios. Com o protocolo, em 10 dias os suores pararam e economizei uma fortuna. Meu ginecologista ficou impressionado com meus exames."
+                    "Estava gastando R$ 800 por mês em hormônios. Com o protocolo, em 10 dias os suores pararam e economizei uma fortuna. Meu ginecologista ficou impressionado com meus exames."
                   </p>
                   <div className="flex text-yellow-400 text-sm">★★★★★</div>
                 </CardContent>
@@ -859,7 +859,7 @@ export default function MenopausaLanding() {
                   <p className="text-sm sm:text-base text-gray-600 mb-2 leading-relaxed">
                     Você receberá um plano simples e prático, com orientações personalizadas e diárias durante 14 dias para eliminar os sintomas da menopausa.
                   </p>
-                  <span className="text-green-600 font-bold">Valor: R\$ 97,00</span>
+                  <span className="text-green-600 font-bold">Valor: R$ 97,00</span>
                 </div>
               </div>
 
@@ -879,7 +879,7 @@ export default function MenopausaLanding() {
                   <p className="text-sm sm:text-base text-gray-600 mb-2 leading-relaxed">
                     80 receitas simples e nutritivas que ajudam a equilibrar os hormônios, combater calorões e melhorar o metabolismo.
                   </p>
-                  <span className="text-green-600 font-bold">Valor: R\$ 67,00</span>
+                  <span className="text-green-600 font-bold">Valor: R$ 67,00</span>
                 </div>
               </div>
 
@@ -899,7 +899,7 @@ export default function MenopausaLanding() {
                   <p className="text-sm sm:text-base text-gray-600 mb-2 leading-relaxed">
                     Descubra os chás naturais mais poderosos para desinchar, acelerar o metabolismo e derreter gordura abdominal, tudo direto da sua cozinha.
                   </p>
-                  <span className="text-green-600 font-bold">Valor: R\$ 67,00</span>
+                  <span className="text-green-600 font-bold">Valor: R$ 67,00</span>
                 </div>
               </div>
             </div>
@@ -916,7 +916,7 @@ export default function MenopausaLanding() {
                   <div>
                     <h4 className="font-bold text-sm sm:text-base">Cardápio Reset com Alimentos Funcionais</h4>
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Descubra o que colocar (e o que tirar) do seu prato para reduzir os sintomas naturalmente sem dietas malucas.</p>
-                    <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R\$ 47,00</span>
+                    <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R$ 47,00</span>
                   </div>
                 </div>
 
@@ -925,7 +925,7 @@ export default function MenopausaLanding() {
                   <div>
                     <h4 className="font-bold text-sm sm:text-base">Protocolo da Libido Renovada</h4>
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Ative o desejo sexual com pequenos hábitos que restauram o prazer, sem cremes, sem química, sem tabu.</p>
-                    <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R\$ 67,00</span>
+                    <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R$ 67,00</span>
                   </div>
                 </div>
 
@@ -934,7 +934,7 @@ export default function MenopausaLanding() {
                   <div>
                     <h4 className="font-bold text-sm sm:text-base">Diário da Transformação 50+</h4>
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Roteiro simples para aplicar o protocolo no seu ritmo, com marcações de progresso e lembretes práticos.</p>
-                    <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R\$ 47,00</span>
+                    <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R$ 47,00</span>
                   </div>
                 </div>
 
@@ -943,7 +943,7 @@ export default function MenopausaLanding() {
                   <div>
                     <h4 className="font-bold text-sm sm:text-base">Manual do Sono Reparador</h4>
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">O Manual do Sono Reparador revela as estratégias naturais e cientificamente comprovadas para acabar com a insônia, o sono picado e o cansaço crônico que a menopausa traz.</p>
-                    <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R\$ 47,00</span>
+                    <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R$ 47,00</span>
                   </div>
                 </div>
               </div>
@@ -965,7 +965,7 @@ export default function MenopausaLanding() {
                     <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
                     <span className="text-sm sm:text-base">Protocolo Menopausa Leve</span>
                   </div>
-                  <span className="line-through text-gray-500 text-sm sm:text-base">R\$ 97,00</span>
+                  <span className="line-through text-gray-500 text-sm sm:text-base">R$ 97,00</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -973,7 +973,7 @@ export default function MenopausaLanding() {
                     <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
                     <span className="text-sm sm:text-base">80 Receitas Termogênicas Anti-Menopausa</span>
                   </div>
-                  <span className="line-through text-gray-500 text-sm sm:text-base">R\$ 67,00</span>
+                  <span className="line-through text-gray-500 text-sm sm:text-base">R$ 67,00</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -981,7 +981,7 @@ export default function MenopausaLanding() {
                     <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
                     <span className="text-sm sm:text-base">40 Chás Detox Hormonal</span>
                   </div>
-                  <span className="line-through text-gray-500 text-sm sm:text-base">R\$ 67,00</span>
+                  <span className="line-through text-gray-500 text-sm sm:text-base">R$ 67,00</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -989,7 +989,7 @@ export default function MenopausaLanding() {
                     <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
                     <span className="text-sm sm:text-base">Cardápio Reset com Alimentos Funcionais</span>
                   </div>
-                  <span className="line-through text-gray-500 text-sm sm:text-base">R\$ 47,00</span>
+                  <span className="line-through text-gray-500 text-sm sm:text-base">R$ 47,00</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -997,7 +997,7 @@ export default function MenopausaLanding() {
                     <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
                     <span className="text-sm sm:text-base">Protocolo da Libido Renovada</span>
                   </div>
-                  <span className="line-through text-gray-500 text-sm sm:text-base">R\$ 67,00</span>
+                  <span className="line-through text-gray-500 text-sm sm:text-base">R$ 67,00</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -1005,7 +1005,7 @@ export default function MenopausaLanding() {
                     <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
                     <span className="text-sm sm:text-base">Diário da Transformação 50+</span>
                   </div>
-                  <span className="line-through text-gray-500 text-sm sm:text-base">R\$ 47,00</span>
+                  <span className="line-through text-gray-500 text-sm sm:text-base">R$ 47,00</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -1013,14 +1013,14 @@ export default function MenopausaLanding() {
                     <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
                     <span className="text-sm sm:text-base">Manual do Sono Reparador</span>
                   </div>
-                  <span className="line-through text-gray-500 text-sm sm:text-base">R\$ 47,00</span>
+                  <span className="line-through text-gray-500 text-sm sm:text-base">R$ 47,00</span>
                 </div>
                 
                 <hr className="border-gray-300" />
                 
                 <div className="flex items-center justify-between text-base sm:text-lg font-bold">
                   <span>Tudo isso deveria custar:</span>
-                  <span className="line-through text-red-500">R\$ 486,00</span>
+                  <span className="line-through text-red-500">R$ 486,00</span>
                 </div>
               </div>
             </div>
@@ -1046,9 +1046,9 @@ export default function MenopausaLanding() {
               <div className="text-center mb-6">
                 <p className="text-base sm:text-lg mb-2">Por apenas 9x de:</p>
                 <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-secondary mb-2">
-                  R\$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,02
+                  R$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,02
                 </p>
-                <p className="text-base sm:text-lg md:text-xl">ou R\$ 37,00 à vista</p>
+                <p className="text-base sm:text-lg md:text-xl">ou R$ 37,00 à vista</p>
               </div>
 
               <Button
@@ -1258,9 +1258,9 @@ export default function MenopausaLanding() {
               <div className="text-center mb-6">
                 <p className="text-base sm:text-lg mb-2">Por apenas 9x de:</p>
                 <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-secondary mb-2">
-                  R\$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,02
+                  R$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,02
                 </p>
-                <p className="text-base sm:text-lg md:text-xl">ou R\$ 37,00 à vista</p>
+                <p className="text-base sm:text-lg md:text-xl">ou R$ 37,00 à vista</p>
               </div>
 
               <Button
@@ -1287,7 +1287,7 @@ export default function MenopausaLanding() {
                 🎯 Mais de 15.000 mulheres já se libertaram dos sintomas da menopausa
               </p>
               <p className="text-sm text-green-700 leading-relaxed">
-                "Estava gastando R\$ 800 por mês em hormônios. Em 10 dias os suores pararam e economizei uma fortuna!" - Ana Paula Santos, 48 anos
+                "Estava gastando R$ 800 por mês em hormônios. Em 10 dias os suores pararam e economizei uma fortuna!" - Ana Paula Santos, 48 anos
               </p>
             </div>
           </div>
