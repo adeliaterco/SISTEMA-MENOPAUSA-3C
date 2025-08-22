@@ -652,7 +652,7 @@ export default function MenopausaLanding() {
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white p-4 sm:p-6 rounded-lg shadow-lg">
               <div className="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
                 <Image
-                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/e0263722-418c-4bcb-8d50-bb6f8fbcdc33.png"
+                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/mockup-pml-02.png"
                   alt="80 Receitas Termogênicas Anti-Menopausa"
                   width={128}
                   height={128}
@@ -672,7 +672,7 @@ export default function MenopausaLanding() {
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white p-4 sm:p-6 rounded-lg shadow-lg">
               <div className="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
                 <Image
-                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/8370a9a8-7e60-4671-8a89-e463d3e3a57b.png"
+                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/mockup-pml-03.png"
                   alt="40 Chás Detox Hormonal"
                   width={128}
                   height={128}
@@ -948,15 +948,15 @@ export default function MenopausaLanding() {
 
           <div className="bg-card p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
             <div className="flex flex-col md:flex-row items-center gap-4 sm:gap-6">
-              <div className="flex-shrink-0">
-                <Image
-                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/0be4d422-17fb-4469-94c1-65abb89c28df.png"
-                  alt="Dra. Mariana Fernandes"
-                  width={160}
-                  height={160}
-                  className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-secondary"
-                />
-              </div>
+<div className="flex-shrink-0">
+  <Image
+    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/0be4d422-17fb-4469-94c1-65abb89c28df.png"
+    alt="Dra. Mariana Fernandes"
+    width={320}
+    height={400}
+    className="w-48 h-60 sm:w-56 sm:h-70 md:w-80 md:h-96 object-cover border-4 border-secondary shadow-lg"
+  />
+</div>
               <div className="text-center md:text-left">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-2">Dra. Mariana Fernandes</h3>
                 <p className="text-secondary font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Especialista em Medicina Integrativa e Fitoterapia</p>
@@ -972,7 +972,7 @@ export default function MenopausaLanding() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Users className="w-3 h-3 sm:w-4 sm:h-4 text-secondary flex-shrink-0" />
-                    <span>28.000+ mulheres transformadas</span>
+                    <span>15.000+ mulheres transformadas</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-secondary flex-shrink-0" />
@@ -1069,7 +1069,7 @@ export default function MenopausaLanding() {
 
           <div className="bg-green-50 border border-green-200 p-3 sm:p-4 rounded-lg">
             <p className="text-sm sm:text-base font-bold text-green-800">
-              💚 Mais de 28.000 mulheres já se libertaram dos sintomas da menopausa
+              💚 Mais de 15.000 mulheres já se libertaram dos sintomas da menopausa
             </p>
             <p className="text-xs sm:text-sm text-green-700 leading-relaxed">
               "Estava gastando R$ 800 por mês em hormônios. Em 10 dias os suores pararam e economizei uma fortuna!" - Ana Paula Santos, 48 anos
@@ -1082,10 +1082,10 @@ export default function MenopausaLanding() {
       <footer className="bg-muted py-4 sm:py-6 md:py-8 px-2 sm:px-3 md:px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs md:text-sm text-muted-foreground mb-2 leading-relaxed">
-            <strong>Aviso Legal:</strong> As informações disponibilizadas neste site têm caráter exclusivamente educacional e informativo. O produto apresentado não garante resultados específicos, uma vez que estes podem variar conforme as particularidades de cada indivíduo. Recomenda-se a consulta com um profissional qualificado para orientações complementares. Todos os direitos reservados.
+            <strong>Aviso Legal:</strong> As informações disponibilizadas neste site têm caráter exclusivamente educacional e informativo. O produto apresentado não garante resultados específicos, uma vez que estes podem variar conforme as particularidades de cada indivíduo. Recomenda-se a consulta com um profissional qualificado para orientações complementares.
           </p>
           <p className="text-xs text-muted-foreground">
-            © 2024 Protocolo Menopausa Leve em 14 Dias. Todos os direitos reservados.
+            © 2024 Protocolo Menopausa Leve. Todos os direitos reservados.
           </p>
         </div>
       </footer>
