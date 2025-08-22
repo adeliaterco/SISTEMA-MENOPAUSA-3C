@@ -4,1222 +4,1091 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, Brain, Heart, Zap, Users, CheckCircle, Award, BookOpen } from "lucide-react"
+import { Shield, Brain, Heart, Zap, Users, CheckCircle, Award, BookOpen, Gift } from "lucide-react"
+import Image from "next/image"
 
 export default function MenopausaLanding() {
   const checkoutUrl = "https://pay.cakto.com.br/3992hmw_531473"
-  const [vagasRestantes, setVagasRestantes] = useState(47)
+  const [pessoasComprando, setPessoasComprando] = useState(357)
 
   const handleCheckout = () => {
     window.open(checkoutUrl, "_blank")
   }
 
   useEffect(() => {
-    const vagasTimer = setInterval(() => {
-      setVagasRestantes((prev) => {
-        if (prev > 15) {
-          // Diminui vagas aleatoriamente entre 1-3 a cada 30-60 segundos
-          const shouldDecrease = Math.random() < 0.1 // 10% de chance a cada segundo
-          if (shouldDecrease) {
-            const decrease = Math.floor(Math.random() * 3) + 1
-            return Math.max(15, prev - decrease)
-          }
-        }
-        return prev
+    const comprandoTimer = setInterval(() => {
+      setPessoasComprando((prev) => {
+        const variacao = Math.floor(Math.random() * 7) - 3
+        let novoNumero = prev + variacao
+        if (novoNumero < 330) novoNumero = 333
+        if (novoNumero > 390) novoNumero = 388
+        return novoNumero
       })
-    }, 1000)
+    }, 3000)
 
-    return () => clearInterval(vagasTimer)
+    return () => clearInterval(comprandoTimer)
   }, [])
 
+  // Notificações de compra dinâmicas
   useEffect(() => {
-    // Carregar script principal da Wistia
-    const script1 = document.createElement("script")
-    script1.src = "https://fast.wistia.com/player.js"
-    script1.async = true
-    document.head.appendChild(script1)
+    const names = [
+      "Maria Helena", "Elisabete", "Sônia Regina", "Marlene", "Vera Lúcia",
+      "Rosângela", "Márcia Aparecida", "Cláudia Cristina", "Cecília", "Adriana Souza",
+      "Neide", "Marta", "Tereza", "Ângela", "Irene", "Regina Célia",
+      "Débora", "Rosa Maria", "Cristina", "Valéria"
+    ]
 
-    // Carregar script específico do vídeo
-    const script2 = document.createElement("script")
-    script2.src = "https://fast.wistia.com/embed/djq84v9yue.js"
-    script2.async = true
-    script2.type = "module"
-    document.head.appendChild(script2)
-
-    // Adicionar estilos CSS para o player
-    const style = document.createElement("style")
-    style.textContent = `
-      wistia-player[media-id='djq84v9yue']:not(:defined) { 
-        background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/djq84v9yue/swatch'); 
-        display: block; 
-        filter: blur(5px); 
-        padding-top: 56.25%; 
-      }
-    `
-    document.head.appendChild(style)
-
-    return () => {
-      // Cleanup
-      if (document.head.contains(script1)) document.head.removeChild(script1)
-      if (document.head.contains(script2)) document.head.removeChild(script2)
-      if (document.head.contains(style)) document.head.removeChild(style)
+    const showNotification = (name: string) => {
+      const notification = document.createElement('div')
+      notification.className = 'fixed bottom-4 left-2 right-2 sm:left-5 sm:right-auto bg-white text-gray-800 border-l-4 border-green-500 p-3 rounded-lg shadow-lg max-w-sm sm:max-w-80 z-50 opacity-0 transform -translate-x-5 transition-all duration-400'
+      notification.innerHTML = `
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-white text-xs">✓</span>
+          </div>
+          <div class="text-xs sm:text-sm">
+            <strong>${name}</strong> acabou de comprar o <strong>Protocolo Menopausa Leve</strong>
+          </div>
+        </div>
+      `
+      
+      document.body.appendChild(notification)
+      
+      setTimeout(() => {
+        notification.classList.remove('opacity-0', '-translate-x-5')
+        notification.classList.add('opacity-100', 'translate-x-0')
+      }, 100)
+      
+      setTimeout(() => {
+        notification.classList.add('opacity-0', '-translate-x-5')
+        setTimeout(() => {
+          if (document.body.contains(notification)) {
+            document.body.removeChild(notification)
+          }
+        }, 400)
+      }, 4500)
     }
-  }, [])
 
-  const scrollToOffer = () => {
-    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })
-  }
+    const scheduleNotification = () => {
+      const delay = Math.floor(Math.random() * 8000) + 10000 // 10-18 segundos
+      setTimeout(() => {
+        const randomName = names[Math.floor(Math.random() * names.length)]
+        showNotification(randomName)
+        scheduleNotification()
+      }, delay)
+    }
+
+    const initialDelay = Math.floor(Math.random() * 3000) + 2000 // 2-5 segundos
+    setTimeout(scheduleNotification, initialDelay)
+  }, [])
 
   return (
     <div className="min-h-screen bg-background">
-      <div>
-        <section className="bg-gradient-to-b from-muted to-background py-6 px-3 md:py-12 md:px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-5xl text-primary mb-3 md:mb-6 font-[family-name:var(--font-space-grotesk)] leading-tight px-1">
-              Como Parar de Esquecer Palavras e Explodir de Raiva em 21 Dias
-            </h1>
-            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground mb-4 md:mb-8 font-semibold leading-relaxed px-1">
-              Se você acorda às 3h pensando 'será que eu tô ficando louca?', não é hormônio - é seu cérebro pedindo
-              socorro
-            </h2>
+      {/* HEADER COM URGÊNCIA OTIMIZADO PARA MOBILE */}
+      <div className="bg-red-600 text-white py-2 px-2 text-center">
+        <p className="text-xs sm:text-sm md:text-base font-bold animate-pulse leading-tight">
+          🚨 ÚLTIMAS 48H: Apenas {pessoasComprando} vagas restantes para o Protocolo Menopausa Leve
+        </p>
+      </div>
 
-            <div className="mb-4 md:mb-8 max-w-3xl mx-auto px-1">
-              <div
-                style={{
-                  position: "relative",
-                  paddingBottom: "56.25%",
-                  height: 0,
-                  overflow: "hidden",
-                  borderRadius: "8px",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-                }}
-              >
-                <wistia-player
-                  media-id="djq84v9yue"
-                  aspect="1.7777777777777777"
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
-              </div>
-            </div>
+      {/* SEÇÃO "ESTE MÉTODO É PARA VOCÊ SE..." OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-center text-primary mb-4 sm:mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)] px-2">
+            "Este Protocolo Foi Criado Especialmente Para Você Se..."
+          </h2>
 
-            <div className="mb-6 md:mb-8 max-w-2xl mx-auto px-1">
-              <img
-                src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/prova-1.png"
-                alt="Prova de resultados do método"
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
-
-            <div className="bg-card p-3 md:p-6 rounded-lg shadow-lg mb-4 md:mb-8 mx-1">
-              <p className="text-sm md:text-lg mb-2 md:mb-4 leading-relaxed">
-                A neurocientista Lisa Mosconi descobriu que o cérebro feminino precisa de 3 combustíveis específicos
-                para funcionar após os 45 anos.
-              </p>
-            </div>
-
-            <div className="flex justify-center gap-1 mb-4 md:mb-8 flex-wrap px-1">
-              <Badge className="bg-green-500 text-white text-xs md:text-sm px-2 py-1">
-                ✅ Combustível 1: MEMÓRIA
-              </Badge>
-              <Badge className="bg-green-500 text-white text-xs md:text-sm px-2 py-1">
-                ✅ Combustível 2: CONCENTRAÇÃO
-              </Badge>
-              <Badge className="bg-green-500 text-white text-xs md:text-sm px-2 py-1">
-                ✅ Combustível 3: CONTROLE EMOCIONAL
-              </Badge>
-              <Badge className="bg-green-500 text-white text-xs md:text-sm px-2 py-1">✅ Resultados em 21 Dias</Badge>
-            </div>
-
-            <Button
-              onClick={handleCheckout}
-              size="lg"
-              className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base md:text-xl px-4 md:px-8 py-3 md:py-4 pulse-glow mx-1 max-w-full"
-            >
-              <span className="truncate">QUERO VOLTAR AO NORMAL EM 21 DIAS</span>
-            </Button>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-gradient-to-r from-green-50 to-blue-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)] px-1">
-              Sua Transformação Dia a Dia: O Cronograma Científico
-            </h2>
-            <h3 className="text-base md:text-xl text-center text-accent mb-6 md:mb-12 font-semibold px-1">
-              Baseado em 15.000 mulheres que já reativaram seus combustíveis cerebrais
-            </h3>
-
-            <div className="grid md:grid-cols-3 gap-4 md:gap-8 mb-6 md:mb-12">
-              <Card className="p-4 md:p-6 border-l-4 border-green-500 bg-green-50">
-                <CardContent className="p-0">
-                  <div className="text-center mb-4">
-                    <div className="bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 text-xl font-bold">
-                      7
-                    </div>
-                    <h3 className="font-bold text-lg text-green-700">PRIMEIROS 7 DIAS</h3>
-                    <p className="text-sm text-green-600 font-semibold">Combustível 1 Ativado</p>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span>Para de esquecer palavras no meio da frase</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span>Consegue terminar os pensamentos</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span>Menos "brancos na mente"</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span>Família nota que você "voltou"</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6 border-l-4 border-blue-500 bg-blue-50">
-                <CardContent className="p-0">
-                  <div className="text-center mb-4">
-                    <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 text-xl font-bold">
-                      14
-                    </div>
-                    <h3 className="font-bold text-lg text-blue-700">ATÉ 14 DIAS</h3>
-                    <p className="text-sm text-blue-600 font-semibold">Combustível 2 Ativado</p>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-blue-500" />
-                      <span>Concentração melhor que aos 40</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-blue-500" />
-                      <span>Lembra onde colocou as coisas</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-blue-500" />
-                      <span>Consegue focar em tarefas complexas</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-blue-500" />
-                      <span>Produtividade no trabalho dispara</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6 border-l-4 border-purple-500 bg-purple-50">
-                <CardContent className="p-0">
-                  <div className="text-center mb-4">
-                    <div className="bg-purple-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 text-xl font-bold">
-                      21
-                    </div>
-                    <h3 className="font-bold text-lg text-purple-700">ATÉ 21 DIAS</h3>
-                    <p className="text-sm text-purple-600 font-semibold">Combustível 3 Ativado</p>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-purple-500" />
-                      <span>Controle emocional total</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-purple-500" />
-                      <span>Dorme 8 horas seguidas</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-purple-500" />
-                      <span>Não explode mais por bobagem</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-purple-500" />
-                      <span>Casamento e família harmoniosos</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="bg-card p-4 md:p-6 rounded-lg text-center">
-              <p className="text-base md:text-lg font-bold text-primary mb-2">
-                "Minha vida mudou completamente. Em 21 dias, meu marido disse: 'A mulher que me casei voltou.'"
-              </p>
-              <p className="text-sm text-muted-foreground">- Ana Paula, 52 anos, Campinas</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-accent/5">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)] px-1">
-              Meu Cérebro Está Sem Combustível?
-            </h2>
-            <h3 className="text-base md:text-xl text-center text-accent mb-6 md:mb-12 font-semibold px-1">
-              Os 3 Sinais de Que Seus Combustíveis Cerebrais Acabaram
-            </h3>
-
-            <div className="grid md:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-12">
-              <div className="px-1">
-                <div className="space-y-3 md:space-y-6">
-                  <div className="flex items-start gap-2 p-3 bg-card rounded-lg">
-                    <Brain className="w-5 h-5 md:w-6 md:h-6 text-secondary mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-secondary mb-1 text-sm md:text-base">COMBUSTÍVEL 1 em falta:</h4>
-                      <p className="text-xs md:text-base">Você esquece palavras básicas e tem "brancos na mente"</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2 p-3 bg-card rounded-lg">
-                    <Zap className="w-5 h-5 md:w-6 md:h-6 text-secondary mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-secondary mb-1 text-sm md:text-base">COMBUSTÍVEL 2 em falta:</h4>
-                      <p className="text-xs md:text-base">
-                        Não consegue se concentrar e esquece onde colocou as coisas
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2 p-3 bg-card rounded-lg">
-                    <Heart className="w-5 h-5 md:w-6 md:h-6 text-secondary mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-secondary mb-1 text-sm md:text-base">COMBUSTÍVEL 3 em falta:</h4>
-                      <p className="text-xs md:text-base">Explode de raiva por bobagem e acorda às 3h da manhã</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-card p-3 md:p-6 rounded-lg mx-1">
-                <h3 className="text-base md:text-xl font-bold mb-2 md:mb-4 text-primary">
-                  A Descoberta Que Mudou Tudo
-                </h3>
-                <p className="text-sm md:text-lg mb-2 md:mb-4 leading-relaxed">
-                  Não é 'coisa da sua cabeça'. Não é 'normal da idade'. É seu cérebro literalmente sem combustível. E
-                  quando você reabastecer os 3 combustíveis em 21 dias, vai voltar a se sentir normal novamente.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-red-50 border-2 border-red-200 p-4 md:p-6 rounded-lg mb-6 md:mb-8 mx-1">
-              <div className="mb-6 md:mb-8">
-                <img
-                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/professional-split-screen-photograph-of-_M5O74O7yTjyI0tzxI_80gg_uqncdrQmQVe1ju5ZLoyRQA.jpeg"
-                  alt="Imagem personalizada 16:9"
-                  className="w-full h-auto rounded-lg shadow-lg aspect-video object-cover"
-                />
-              </div>
-              <h3 className="text-lg md:text-2xl font-bold text-red-700 mb-4 text-center">
-                💔 O QUE REALMENTE ESTÁ ACONTECENDO NA SUA CASA
-              </h3>
-              <p className="text-sm md:text-base text-red-800 mb-4 text-center">
-                Enquanto seu cérebro fica sem combustível:
-              </p>
-              <div className="space-y-2 text-sm md:text-base text-red-800">
-                <div className="flex items-center gap-2">
-                  <span>👨‍👩‍👧‍👦</span>
-                  <span>Seu marido não entende por que você "mudou tanto"</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>👶</span>
-                  <span>Seus filhos evitam conversar com você</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>🏠</span>
-                  <span>O clima em casa fica pesado, tenso</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>💼</span>
-                  <span>No trabalho, você disfarça, mas todos percebem</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>😴</span>
-                  <span>Você deita pensando: "Será que vou ficar assim para sempre?"</span>
-                </div>
-              </div>
-              <div className="bg-red-100 p-3 md:p-4 rounded-lg mt-4">
-                <p className="text-sm md:text-base font-semibold text-red-900 text-center">
-                  Não é culpa sua. É seu cérebro pedindo socorro.
-                  <br />E quando você reabastecer os 3 combustíveis, sua família vai dizer:
-                  <br />
-                  <strong>"A mãe/esposa que conhecíamos voltou."</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-gradient-to-r from-blue-50 to-purple-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-8 font-[family-name:var(--font-space-grotesk)]">
-              Especialista PHD
-            </h2>
-
-            <div className="bg-card p-6 md:p-8 rounded-lg shadow-lg">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="flex-shrink-0">
-                  <img
-                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/especialista-medica-profissional.png"
-                    alt="Dra. Fabiana B."
-                    className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-secondary"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
+            {/* DOR 1 - Suores Noturnos */}
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-red-500 bg-red-50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-full h-32 sm:h-40 md:h-48 lg:h-56 mb-3 sm:mb-4 rounded-lg overflow-hidden">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/b0db51ea-cc21-4391-866c-70bd8c3aa936.png"
+                    alt="Mulher acordando suada de madrugada"
+                    width={300}
+                    height={128}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
-                <div className="text-center md:text-left">
-                  <h3 className="text-xl md:text-2xl font-bold text-primary mb-2">Dra. Fabiana B.</h3>
-                  <p className="text-secondary font-semibold mb-4">Especialista em Neuromenopausa</p>
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 text-base sm:text-lg flex-shrink-0">❌</span>
+                  <span className="text-xs sm:text-sm md:text-base font-medium leading-tight">Você acorda de madrugada encharcada de suor (enquanto seu marido dorme tranquilo)</span>
+                </div>
+              </CardContent>
+            </Card>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Award className="w-4 h-4 text-secondary" />
-                      <span>15+ anos especializando em menopausa</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <BookOpen className="w-4 h-4 text-secondary" />
-                      <span>Pós-graduação em Neurociência</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-secondary" />
-                      <span>15.000+ mulheres atendidas</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-secondary" />
-                      <span>Membro da Sociedade Brasileira de Climatério</span>
-                    </div>
-                  </div>
+            {/* DOR 2 - Ondas de Calor */}
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-red-500 bg-red-50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-full h-32 sm:h-40 md:h-48 lg:h-56 mb-3 sm:mb-4 rounded-lg overflow-hidden">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/60d984dd-f481-4686-a58a-b4c22a98cc23.png"
+                    alt="Mulher com ondas de calor"
+                    width={300}
+                    height={128}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 text-base sm:text-lg flex-shrink-0">❌</span>
+                  <span className="text-xs sm:text-sm md:text-base font-medium leading-tight">Sente ondas de calor que sobem do nada e te deixam vermelha na frente de todo mundo</span>
+                </div>
+              </CardContent>
+            </Card>
 
-                  <div className="mt-4 p-4 bg-secondary/10 rounded-lg">
-                    <p className="text-sm md:text-base italic">
-                      "Dediquei minha carreira a entender por que as mulheres sofrem tanto na menopausa. A descoberta
-                      dos 3 combustíveis cerebrais mudou tudo. Agora posso devolver a vida que elas pensavam ter perdido
-                      para sempre."
-                    </p>
+            {/* DOR 3 - Ganho de Peso */}
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-red-500 bg-red-50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-full h-32 sm:h-40 md:h-48 lg:h-56 mb-3 sm:mb-4 rounded-lg overflow-hidden">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/c7673c1f-cc20-4edc-980c-578fa566410f.png"
+                    alt="Mulher triste na balança"
+                    width={300}
+                    height={128}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 text-base sm:text-lg flex-shrink-0">❌</span>
+                  <span className="text-xs sm:text-sm md:text-base font-medium leading-tight">Subiu na balança hoje e quase chorou com o número que viu</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* DOR 4 - Perda da Libido */}
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-red-500 bg-red-50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-full h-32 sm:h-40 md:h-48 lg:h-56 mb-3 sm:mb-4 rounded-lg overflow-hidden">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/4c49adc8-f2a3-4501-8c1c-4eb313326ecc.png"
+                    alt="Casal distante na cama"
+                    width={300}
+                    height={128}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 text-base sm:text-lg flex-shrink-0">❌</span>
+                  <span className="text-xs sm:text-sm md:text-base font-medium leading-tight">Perdeu completamente a vontade de fazer sexo (e isso te deixa triste e culpada)</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* DOR 5 - Irritabilidade */}
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-red-500 bg-red-50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-full h-32 sm:h-40 md:h-48 lg:h-56 mb-3 sm:mb-4 rounded-lg overflow-hidden">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/ba02d339-23da-4b61-bcc0-095cd13dc7ba.png"
+                    alt="Mulher irritada explodindo"
+                    width={300}
+                    height={128}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 text-base sm:text-lg flex-shrink-0">❌</span>
+                  <span className="text-xs sm:text-sm md:text-base font-medium leading-tight">Explode por qualquer bobagem e depois se arrepende</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* DOR 6 - Autoestima Baixa */}
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-red-500 bg-red-50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-full h-32 sm:h-40 md:h-48 lg:h-56 mb-3 sm:mb-4 rounded-lg overflow-hidden">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/e337b404-f2dc-4feb-a4be-a56b47feacf0.png"
+                    alt="Mulher triste olhando no espelho"
+                    width={300}
+                    height={128}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-red-500 text-base sm:text-lg flex-shrink-0">❌</span>
+                  <span className="text-xs sm:text-sm md:text-base font-medium leading-tight">Olha no espelho e não reconhece mais quem você é</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="bg-green-100 border-2 border-green-500 p-3 sm:p-4 md:p-6 rounded-lg text-center">
+            <p className="text-base sm:text-lg md:text-xl font-bold text-green-800 mb-2">
+              Se você pensou "meu Deus, ela está falando exatamente de mim"...
+            </p>
+            <p className="text-sm sm:text-base md:text-lg text-green-700 font-semibold">
+              O <strong>Protocolo Menopausa Leve</strong> vai mudar sua vida nos próximos 14 dias.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* DEPOIMENTOS OTIMIZADOS */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-center text-primary mb-4 sm:mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)] px-2">
+            Veja mulheres que usaram o <strong>Protocolo Menopausa Leve</strong> e transformaram sua saúde em apenas 14 dias
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <Card className="p-3 sm:p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-center gap-3 mb-3">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/06/01.png"
+                    alt="Ana Paula Santos"
+                    width={48}
+                    height={48}
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
+                  />
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base">Ana Paula Santos, 48 anos</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Brasília</p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-8 font-[family-name:var(--font-space-grotesk)] px-2">
-              MÉTODO DOS 3 COMBUSTÍVEIS CEREBRAIS
-            </h2>
-            <h3 className="text-lg md:text-xl text-accent mb-8 md:mb-12 font-semibold px-2">
-              O Único Sistema Que Reabastece Seu Cérebro em 21 Dias
-            </h3>
-
-            <div className="grid gap-4 md:grid-cols-3 md:gap-8 mb-6 md:mb-12">
-              <Card className="p-3 md:p-6 border-l-4 border-secondary mx-1">
-                <CardContent className="p-0">
-                  <Brain className="w-10 h-10 md:w-16 md:h-16 text-secondary mx-auto mb-3" />
-                  <h3 className="font-bold text-base md:text-xl mb-2 text-primary">COMBUSTÍVEL 1</h3>
-                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">MEMÓRIA</h4>
-                  <p className="text-xs md:text-sm mb-2">
-                    <strong>O que é:</strong> Reativa a produção cerebral de estrogênio
-                  </p>
-                  <p className="text-xs md:text-sm mb-2">
-                    <strong>Quando falta:</strong> "Brancos na mente", esquece palavras básicas
-                  </p>
-                  <p className="text-xs md:text-sm font-bold text-green-600">
-                    <strong>Resultado em 7 dias:</strong> Para de esquecer palavras
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-3 md:p-6 border-l-4 border-secondary mx-1">
-                <CardContent className="p-0">
-                  <Zap className="w-10 h-10 md:w-16 md:h-16 text-secondary mx-auto mb-3" />
-                  <h3 className="font-bold text-base md:text-xl mb-2 text-primary">COMBUSTÍVEL 2</h3>
-                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">CONCENTRAÇÃO</h4>
-                  <p className="text-xs md:text-sm mb-2">
-                    <strong>O que é:</strong> Açúcar específico que alimenta a memória e foco
-                  </p>
-                  <p className="text-xs md:text-sm mb-2">
-                    <strong>Quando falta:</strong> Não consegue se concentrar, esquece onde colocou as coisas
-                  </p>
-                  <p className="text-xs md:text-sm font-bold text-green-600">
-                    <strong>Resultado em 14 dias:</strong> Foco total de volta
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-3 md:p-6 border-l-4 border-secondary mx-1">
-                <CardContent className="p-0">
-                  <Heart className="w-10 h-10 md:w-16 md:h-16 text-secondary mx-auto mb-3" />
-                  <h3 className="font-bold text-base md:text-xl mb-2 text-primary">COMBUSTÍVEL 3</h3>
-                  <h4 className="font-bold text-secondary mb-2 text-sm md:text-base">CONTROLE EMOCIONAL</h4>
-                  <p className="text-xs md:text-sm mb-2">
-                    <strong>O que é:</strong> Serotonina, dopamina e GABA equilibrados
-                  </p>
-                  <p className="text-xs md:text-sm mb-2">
-                    <strong>Quando falta:</strong> Explode de raiva, acorda às 3h, ansiedade
-                  </p>
-                  <p className="text-xs md:text-sm font-bold text-green-600">
-                    <strong>Resultado em 21 dias:</strong> Para de explodir
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="bg-accent/10 p-3 md:p-6 rounded-lg mx-1">
-              <p className="text-base md:text-xl font-bold text-primary leading-relaxed">
-                Enquanto outros métodos tratam sintomas... Nós reabastecemos seu cérebro com os 3 combustíveis
-                essenciais
-              </p>
-            </div>
-
-            <Button
-              onClick={handleCheckout}
-              size="lg"
-              className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base md:text-xl px-4 md:px-8 py-3 md:py-4 pulse-glow mx-1 max-w-full mt-6"
-            >
-              <span className="truncate">QUERO VOLTAR AO NORMAL EM 21 DIAS</span>
-            </Button>
-          </div>
-        </section>
-
-        {/* NOVA SEÇÃO ANTES/DEPOIS */}
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-gradient-to-r from-red-50 to-green-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
-              ANTES vs DEPOIS dos 3 Combustíveis
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              <Card className="p-4 md:p-6 border-2 border-red-500 bg-red-50">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg md:text-xl mb-4 text-red-700 text-center">
-                    ❌ ANTES (Cérebro sem combustível)
-                  </h3>
-                  <div className="space-y-3 text-sm md:text-base">
-                    <div className="flex items-center gap-2">
-                      <span className="text-red-500">❌</span>
-                      <span>Esquece palavras no meio da frase</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-red-500">❌</span>
-                      <span>Explode de raiva por bobagem</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-red-500">❌</span>
-                      <span>Família evita conversar com você</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-red-500">❌</span>
-                      <span>Não consegue se concentrar</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-red-500">❌</span>
-                      <span>Acorda às 3h da manhã</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-red-500">❌</span>
-                      <span>Pensa: "Será que vou ficar assim para sempre?"</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6 border-2 border-green-500 bg-green-50">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg md:text-xl mb-4 text-green-700 text-center">
-                    ✅ DEPOIS (3 combustíveis ativos)
-                  </h3>
-                  <div className="space-y-3 text-sm md:text-base">
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-500">✅</span>
-                      <span>Lembra de tudo como aos 40</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-500">✅</span>
-                      <span>Controle emocional total</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-500">✅</span>
-                      <span>Família diz: "Você voltou!"</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-500">✅</span>
-                      <span>Concentração melhor que aos 40</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-500">✅</span>
-                      <span>Dorme 8 horas seguidas</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-500">✅</span>
-                      <span>Sabe: "Eu voltei ao normal!"</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="bg-card p-4 md:p-6 rounded-lg text-center mt-6 md:mt-8">
-              <p className="text-base md:text-lg font-bold text-primary mb-2">
-                "Em 21 dias, meu marido disse: 'A mulher que me casei voltou.'"
-              </p>
-              <p className="text-sm text-muted-foreground">- Maria Santos, 54 anos</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-gradient-to-r from-blue-50 to-green-50">
-          <div className="mb-6 md:mb-8 flex justify-center">
-            <div className="relative">
-              <img
-                src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/capa-produto.png"
-                alt="Método dos 3 Combustíveis Cerebrais - Produto"
-                className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-cover rounded-2xl shadow-2xl mx-auto"
-              />
-              <div className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs md:text-sm font-bold animate-pulse">
-                SISTEMA 3C!
-              </div>
-            </div>
-          </div>
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-4 md:mb-8 font-[family-name:var(--font-space-grotesk)]">
-              O QUE VOCÊ VAI RECEBER
-            </h2>
-            <h3 className="text-base md:text-xl text-center text-accent mb-6 md:mb-10 font-semibold px-2">
-              Sistema Completo dos 3 Combustíveis Cerebrais
-            </h3>
-
-            <div className="grid sm:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-              <Card className="p-3 md:p-4 text-left">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-2 mb-2 md:mb-3">
-                    <Brain className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-                    <h3 className="font-bold text-sm md:text-base">COMBUSTÍVEL 1: Reativação da Memória</h3>
-                  </div>
-                  <ul className="space-y-1 text-xs md:text-sm">
-                    <li>• Protocolo de 7 dias que reativa a produção cerebral</li>
-                    <li>• 5 alimentos que "ligam" os neurônios produtores</li>
-                    <li>• Técnica de respiração para oxigenar áreas cerebrais</li>
-                    <li>• Horários exatos para consumir os ativadores neurais</li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="p-3 md:p-4 text-left">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-2 mb-2 md:mb-3">
-                    <Zap className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-                    <h3 className="font-bold text-sm md:text-base">COMBUSTÍVEL 2: Protocolo da Concentração</h3>
-                  </div>
-                  <ul className="space-y-1 text-xs md:text-sm">
-                    <li>• Como ensinar seu cérebro a usar açúcar eficientemente</li>
-                    <li>• Os 3 tipos de açúcar que o cérebro precisa</li>
-                    <li>• Timing perfeito para alimentar a memória</li>
-                    <li>• Combinações que potencializam absorção neural</li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="p-3 md:p-4 text-left">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-2 mb-2 md:mb-3">
-                    <Heart className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-                    <h3 className="font-bold text-sm md:text-base">
-                      COMBUSTÍVEL 3: Reequilíbrio do Controle Emocional
-                    </h3>
-                  </div>
-                  <ul className="space-y-1 text-xs md:text-sm">
-                    <li>• Protocolo de reequilíbrio químico natural</li>
-                    <li>• 5 aminoácidos que restauram serotonina</li>
-                    <li>• Técnica dos "3 respiros" que libera dopamina</li>
-                    <li>• Ritual noturno que produz GABA natural</li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="p-3 md:p-4 text-left">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-2 mb-2 md:mb-3">
-                    <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-                    <h3 className="font-bold text-sm md:text-base">MANUTENÇÃO: Como Manter os 3 Combustíveis Ativos</h3>
-                  </div>
-                  <ul className="space-y-1 text-xs md:text-sm">
-                    <li>• Protocolo de manutenção semanal</li>
-                    <li>• Como identificar quando um combustível está baixo</li>
-                    <li>• Ajustes para cada fase da vida</li>
-                    <li>• Prevenção de recaídas</li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="bg-accent p-3 md:p-6 rounded-lg mx-1">
-              <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-accent-foreground text-center">
-                BÔNUS EXCLUSIVOS (Valor: R$ 291)
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-                <div className="bg-accent-foreground text-accent p-3 md:p-4 rounded text-center">
-                  <CheckCircle className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2" />
-                  <p className="font-bold text-sm md:text-base">BÔNUS 1</p>
-                  <p className="text-xs md:text-sm">Checklist dos 3 Combustíveis</p>
-                  <p className="text-xs font-bold text-green-600 mt-1">(R$ 127)</p>
-                </div>
-                <div className="bg-accent-foreground text-accent p-3 md:p-4 rounded text-center">
-                  <BookOpen className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2" />
-                  <p className="font-bold text-sm md:text-base">BÔNUS 2</p>
-                  <p className="text-xs md:text-sm">Cardápio Cerebral Completo</p>
-                  <p className="text-xs font-bold text-green-600 mt-1">(R$ 97)</p>
-                </div>
-                <div className="bg-accent-foreground text-accent p-3 md:p-4 rounded text-center">
-                  <Users className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2" />
-                  <p className="font-bold text-sm md:text-base">BÔNUS 3</p>
-                  <p className="text-xs md:text-sm">SOS Família</p>
-                  <p className="text-xs font-bold text-green-600 mt-1">(R$ 67)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-muted/30">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
-              A Ciência Por Trás dos 3 Combustíveis
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8">
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  {/* IMAGEM HARVARD INSERIDA AQUI */}
-                  <div className="mb-4">
-                    <img
-                      src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/professional-medical-journal-article-lay_CIBmaWyDTOi8w2jaW-xshA_-gqPZ9T2RTCtlx6l2mpJwQ.jpeg"
-                      alt="Estudo Harvard - Pesquisa Científica"
-                      className="w-full h-auto rounded-lg shadow-lg"
-                    />
-                  </div>
-                  <h3 className="font-bold text-lg mb-3 text-secondary">Estudo Harvard - 2023</h3>
-                  <p className="text-sm mb-3">
-                    "Mulheres na menopausa que reativaram a produção cerebral de estrogênio mostraram melhora de 73% na
-                    memória verbal em apenas 7 dias."
-                  </p>
-                  <p className="text-xs text-muted-foreground">Journal of Neurological Sciences</p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  {/* IMAGEM STANFORD INSERIDA AQUI */}
-                  <div className="mb-4">
-                    <img
-                      src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/professional-scientific-publication-disp_ObGWPGxWQdurGC618eH1gw_L1kTv4BqT7WLNl9qg4LU8Q.jpeg"
-                      alt="Universidade Stanford - Publicação Científica"
-                      className="w-full h-auto rounded-lg shadow-lg"
-                    />
-                  </div>
-                  <h3 className="font-bold text-lg mb-3 text-secondary">Universidade de Stanford - 2024</h3>
-                  <p className="text-sm mb-3">
-                    "O protocolo de glicose neural mostrou reversão completa dos déficits cognitivos em 89% das
-                    participantes em 14 dias."
-                  </p>
-                  <p className="text-xs text-muted-foreground">Neuroscience Research International</p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="bg-card p-4 md:p-6 rounded-lg text-center">
-              <p className="text-base md:text-lg font-bold text-primary mb-2">
-                15.000 mulheres já comprovaram: os 3 combustíveis funcionam
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Taxa de sucesso: 94% das mulheres relatam melhora significativa em 21 dias
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
-              O Que Nossas Clientes Estão Dizendo
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img
-                      src="https://nutricaoalimentos.shop/wp-content/uploads/2025/06/01.png"
-                      alt="Maria Santos"
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <h4 className="font-bold">Maria Santos, 54 anos</h4>
-                      <p className="text-sm text-muted-foreground">São Paulo</p>
-                    </div>
-                  </div>
-                  <p className="text-sm mb-3">
-                    "Em 7 dias parei de esquecer as palavras. Em 21 dias, meu marido disse: 'A mulher que me casei
-                    voltou.' Minha vida mudou completamente."
-                  </p>
-                  <div className="flex text-yellow-400">★★★★★</div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img
-                      src="https://nutricaoalimentos.shop/wp-content/uploads/2025/06/02.png"
-                      alt="Ana Paula"
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <h4 className="font-bold">Ana Paula, 52 anos</h4>
-                      <p className="text-sm text-muted-foreground">Campinas</p>
-                    </div>
-                  </div>
-                  <p className="text-sm mb-3">
-                    "Não explodo mais por bobagem. Durmo 8 horas seguidas. Meus filhos voltaram a conversar comigo.
-                    Valeu cada centavo."
-                  </p>
-                  <div className="flex text-yellow-400">★★★★★</div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img
-                      src="https://nutricaoalimentos.shop/wp-content/uploads/2025/06/1-DEPOIMENTO.png"
-                      alt="Carla Oliveira"
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <h4 className="font-bold">Carla Oliveira, 49 anos</h4>
-                      <p className="text-sm text-muted-foreground">Rio de Janeiro</p>
-                    </div>
-                  </div>
-                  <p className="text-sm mb-3">
-                    "Minha concentração no trabalho melhorou 300%. Não esqueço mais onde coloco as coisas. Me sinto
-                    inteligente novamente."
-                  </p>
-                  <div className="flex text-yellow-400">★★★★★</div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img
-                      src="https://nutricaoalimentos.shop/wp-content/uploads/2025/06/8db332e349f045c0e1949cb88c6096d4.jpg"
-                      alt="Lucia Ferreira"
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <h4 className="font-bold">Lucia Ferreira, 56 anos</h4>
-                      <p className="text-sm text-muted-foreground">Belo Horizonte</p>
-                    </div>
-                  </div>
-                  <p className="text-sm mb-3">
-                    "Pensei que ia ficar assim para sempre. Em 21 dias, voltei a ser eu mesma. Meu casamento foi salvo."
-                  </p>
-                  <div className="flex text-yellow-400">★★★★★</div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* NOVA SEÇÃO DE OBJEÇÕES */}
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-muted/30">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
-              "MAS EU JÁ TENTEI DE TUDO..."
-            </h2>
-
-            <div className="bg-red-50 border-2 border-red-200 p-4 md:p-6 rounded-lg mb-6 md:mb-8">
-              <h3 className="text-lg md:text-xl font-bold text-red-700 mb-4 text-center">
-                Entendo sua frustração. Você provavelmente tentou:
-              </h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-red-500">❌</span>
-                    <span className="text-sm md:text-base">Reposição hormonal</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-red-500">❌</span>
-                    <span className="text-sm md:text-base">Antidepressivos</span>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-red-500">❌</span>
-                    <span className="text-sm md:text-base">Suplementos caros</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-red-500">❌</span>
-                    <span className="text-sm md:text-base">Terapias diversas</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-green-50 border-2 border-green-200 p-4 md:p-6 rounded-lg">
-              <h3 className="text-lg md:text-xl font-bold text-green-700 mb-4 text-center">
-                Nada funcionou porque você estava tratando os SINTOMAS
-              </h3>
-              <p className="text-sm md:text-base text-green-800 text-center mb-4">
-                Os 3 combustíveis atacam a CAUSA raiz. É por isso que funciona em 21 dias.
-              </p>
-              <div className="bg-green-100 p-3 md:p-4 rounded-lg">
-                <p className="text-sm md:text-base font-bold text-green-900 text-center">
-                  ✅ Diferente de tudo que você já tentou - trata a causa, não os sintomas
+                <p className="text-xs sm:text-sm mb-3 leading-relaxed">
+                  "Estava gastando R$ 800 por mês em hormônios. Com o protocolo, em 10 dias os suores pararam e economizei uma fortuna. Meu ginecologista ficou impressionado com meus exames."
                 </p>
-              </div>
-            </div>
-          </div>
-        </section>
+                <div className="flex text-yellow-400 text-sm">★★★★★</div>
+              </CardContent>
+            </Card>
 
-        <section className="py-8 md:py-16 px-3 md:px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
-              Superando Suas Dúvidas
-            </h2>
-
-            <div className="space-y-4 md:space-y-6">
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg mb-3 text-red-600">"Será que funciona na minha idade?"</h3>
-                  <p className="text-sm md:text-base mb-3">
-                    <strong>Funciona dos 45 aos 65 anos.</strong> Nossa cliente mais velha tinha 63 anos e teve
-                    resultados incríveis. O cérebro tem capacidade de regeneração em qualquer idade quando recebe os
-                    combustíveis certos.
-                  </p>
-                  <p className="text-sm font-bold text-green-600">✅ Testado e aprovado em mulheres de 45 a 65 anos</p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg mb-3 text-red-600">"E se eu não conseguir seguir?"</h3>
-                  <p className="text-sm md:text-base mb-3">
-                    <strong>É mais simples do que parece.</strong> São apenas 15 minutos por dia. Tudo explicado
-                    passo-a-passo, com horários e quantidades exatas. Mais de 15.000 mulheres já conseguiram.
-                  </p>
-                  <p className="text-sm font-bold text-green-600">
-                    ✅ Apenas 15 minutos por dia + protocolo passo-a-passo
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg mb-3 text-red-600">"Meu médico disse que é normal da idade..."</h3>
-                  <p className="text-sm md:text-base mb-3">
-                    <strong>Não é normal sofrer.</strong> Incluímos o bônus "Como Falar com Seu Médico" para você
-                    mostrar as pesquisas científicas. Muitos médicos ainda não conhecem os 3 combustíveis cerebrais.
-                  </p>
-                  <p className="text-sm font-bold text-green-600">
-                    ✅ Bônus: Guia para conversar com seu médico sobre os combustíveis
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg mb-3 text-red-600">"Preciso comprar suplementos caros?"</h3>
-                  <p className="text-sm md:text-base mb-3">
-                    <strong>Não!</strong> O Sistema usa alimentos e técnicas naturais. Tudo que você precisa está disponível em qualquer
-                    supermercado ou farmácia comum.
-                  </p>
-                  <p className="text-sm font-bold text-green-600">✅ Apenas alimentos naturais e técnicas simples</p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg mb-3 text-red-600">"Funciona se eu já faço reposição hormonal?"</h3>
-                  <p className="text-sm md:text-base mb-3">
-                    <strong>Sim!</strong> Os 3 combustíveis cerebrais são complementares à reposição hormonal. Muitas clientes que fazem
-                    TRH tiveram resultados ainda melhores.
-                  </p>
-                  <p className="text-sm font-bold text-green-600">
-                    ✅ Complementa perfeitamente a reposição hormonal
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-gradient-to-r from-green-50 to-blue-50">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-xl md:text-3xl font-bold text-primary mb-6 md:mb-8 font-[family-name:var(--font-space-grotesk)]">
-              GARANTIA TRIPLA BLINDADA
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
-              <Card className="p-4 md:p-6 border-2 border-green-500">
-                <CardContent className="p-0 text-center">
-                  <Shield className="w-12 h-12 md:w-16 md:h-16 text-green-500 mx-auto mb-3" />
-                  <h3 className="font-bold text-lg mb-2 text-green-700">GARANTIA 1</h3>
-                  <h4 className="font-bold text-sm md:text-base mb-2">Resultados em 7 dias</h4>
-                  <p className="text-xs md:text-sm">
-                    Se em 7 dias você não parar de esquecer palavras básicas, devolvemos 100% do seu dinheiro.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6 border-2 border-blue-500">
-                <CardContent className="p-0 text-center">
-                  <Shield className="w-12 h-12 md:w-16 md:h-16 text-blue-500 mx-auto mb-3" />
-                  <h3 className="font-bold text-lg mb-2 text-blue-700">GARANTIA 2</h3>
-                  <h4 className="font-bold text-sm md:text-base mb-2">Concentração em 14 dias</h4>
-                  <p className="text-xs md:text-sm">
-                    Se em 14 dias sua concentração não melhorar significativamente, devolvemos 100% + R$ 50 pelo tempo
-                    perdido.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="p-4 md:p-6 border-2 border-purple-500">
-                <CardContent className="p-0 text-center">
-                  <Shield className="w-12 h-12 md:w-16 md:h-16 text-purple-500 mx-auto mb-3" />
-                  <h3 className="font-bold text-lg mb-2 text-purple-700">GARANTIA 3</h3>
-                  <h4 className="font-bold text-sm md:text-base mb-2">Transformação em 21 dias</h4>
-                  <p className="text-xs md:text-sm">
-                    Se em 21 dias sua família não notar que você "voltou ao normal", devolvemos 100% + R$ 100 de
-                    compensação.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="bg-card p-4 md:p-6 rounded-lg">
-              <p className="text-base md:text-lg font-bold text-primary mb-2">
-                TOTAL: Até R$ 247 de garantia além do reembolso completo
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Você não tem nada a perder e sua vida normal para recuperar
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-8 md:py-16 px-3 md:px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
-              Compare: Quanto Você Gastaria Para Resolver Isso?
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8">
-              <Card className="p-4 md:p-6 border-2 border-red-500">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg mb-4 text-red-700 text-center">CAMINHO TRADICIONAL</h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between">
-                      <span>Consultas médicas (6 meses)</span>
-                      <span className="font-bold">R$ 1.800</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Exames e testes</span>
-                      <span className="font-bold">R$ 800</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Medicamentos/mês (12 meses)</span>
-                      <span className="font-bold">R$ 2.400</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Terapias complementares</span>
-                      <span className="font-bold">R$ 1.200</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Suplementos diversos</span>
-                      <span className="font-bold">R$ 600</span>
-                    </div>
-                    <hr className="border-red-300" />
-                    <div className="flex justify-between font-bold text-lg">
-                      <span>TOTAL NO ANO:</span>
-                      <span className="text-red-700">R$ 6.800</span>
-                    </div>
-                    <p className="text-xs text-red-600 text-center">*Sem garantia de resultados</p>
+            <Card className="p-3 sm:p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-center gap-3 mb-3">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/06/02.png"
+                    alt="Fernanda Lima"
+                    width={48}
+                    height={48}
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
+                  />
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base">Fernanda Lima, 52 anos</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Porto Alegre</p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+                <p className="text-xs sm:text-sm mb-3 leading-relaxed">
+                  "Tentei 3 tratamentos diferentes. Nada funcionou. Este protocolo foi diferente: em 1 semana dormia a noite toda. Em 15 dias, 5kg a menos sem dieta maluca."
+                </p>
+                <div className="flex text-yellow-400 text-sm">★★★★★</div>
+              </CardContent>
+            </Card>
 
-              <Card className="p-4 md:p-6 border-2 border-green-500">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-lg mb-4 text-green-700 text-center">MÉTODO DOS 3 COMBUSTÍVEIS</h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between">
-                      <span>Sistema completo</span>
-                      <span className="font-bold">R$ 37</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>3 Bônus exclusivos</span>
-                      <span className="font-bold text-green-600">GRÁTIS</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Garantia tripla blindada</span>
-                      <span className="font-bold text-green-600">GRÁTIS</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Resultados em 21 dias</span>
-                      <span className="font-bold text-green-600">GARANTIDO</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Acesso vitalício</span>
-                      <span className="font-bold text-green-600">INCLUÍDO</span>
-                    </div>
-                    <hr className="border-green-300" />
-                    <div className="flex justify-between font-bold text-lg">
-                      <span>TOTAL:</span>
-                      <span className="text-green-700">R$ 37</span>
-                    </div>
-                    <p className="text-xs text-green-600 text-center">*Com garantia tripla de resultados</p>
+            <Card className="p-3 sm:p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-center gap-3 mb-3">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/06/1-DEPOIMENTO.png"
+                    alt="Roberta Oliveira"
+                    width={48}
+                    height={48}
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
+                  />
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base">Roberta Oliveira, 45 anos</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Salvador</p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+                <p className="text-xs sm:text-sm mb-3 leading-relaxed">
+                  "Meu casamento estava acabando. Não tinha mais prazer em nada. Depois do protocolo, voltei a me sentir desejada. Meu marido disse que tem a esposa dele de volta."
+                </p>
+                <div className="flex text-yellow-400 text-sm">★★★★★</div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-3 sm:p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-center gap-3 mb-3">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/06/8db332e349f045c0e1949cb88c6096d4.jpg"
+                    alt="Patricia Rocha"
+                    width={48}
+                    height={48}
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
+                  />
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base">Patricia Rocha, 49 anos</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Curitiba</p>
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm mb-3 leading-relaxed">
+                  "Era escrava do ar condicionado. Não saía de casa com medo dos calorões. Hoje uso qualquer roupa, vou a qualquer lugar. Me sinto livre de novo."
+                </p>
+                <div className="flex text-yellow-400 text-sm">★★★★★</div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO DE DIFERENCIAÇÃO OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-blue-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-primary mb-4 sm:mb-6 px-2">
+            "Por Que Este Protocolo É Diferente de Tudo Que Você Já Tentou?"
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            <Card className="p-4 sm:p-6 bg-white">
+              <h3 className="font-bold text-base sm:text-lg mb-3 text-red-600">❌ OUTROS MÉTODOS</h3>
+              <ul className="text-xs sm:text-sm space-y-2 text-left">
+                <li>• Focam apenas nos sintomas</li>
+                <li>• Usam hormônios sintéticos</li>
+                <li>• Resultados temporários</li>
+                <li>• Efeitos colaterais</li>
+              </ul>
+            </Card>
+            
+            <Card className="p-4 sm:p-6 bg-green-50 border-2 border-green-500">
+              <h3 className="font-bold text-base sm:text-lg mb-3 text-green-600">✅ PROTOCOLO RESET</h3>
+              <ul className="text-xs sm:text-sm space-y-2 text-left">
+                <li>• Ataca a raiz hormonal</li>
+                <li>• 100% natural e seguro</li>
+                <li>• Resultados permanentes</li>
+                <li>• Zero efeitos colaterais</li>
+              </ul>
+            </Card>
+            
+            <Card className="p-4 sm:p-6 bg-white">
+              <h3 className="font-bold text-base sm:text-lg mb-3 text-blue-600">🎯 RESULTADO</h3>
+              <ul className="text-xs sm:text-sm space-y-2 text-left">
+                <li>• 72h para primeiros sinais</li>
+                <li>• 14 dias para transformação</li>
+                <li>• Método cientificamente validado</li>
+                <li>• Aprovado por médicos</li>
+              </ul>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO DE AGITAÇÃO EMOCIONAL OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-r from-red-50 to-orange-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-center text-red-700 mb-4 sm:mb-6 md:mb-8 font-[family-name:var(--font-space-grotesk)] px-2">
+            "Eu Sei... A Menopausa Roubou Quem Você Era, Não Foi?"
+          </h2>
+
+          <div className="bg-red-100 border-2 border-red-200 p-3 sm:p-4 md:p-6 rounded-lg mb-4 sm:mb-6 md:mb-8">
+            <div className="mb-4 sm:mb-6 md:mb-8">
+              <Image
+                src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/split-screen-dramatic-before-after-of-br_SYoEg1MsT7aEb8YiaVVSwQ_aUzlre9sTuuEoIIYDw4Srw.jpeg"
+                alt="Mulher sofrendo com menopausa"
+                width={800}
+                height={450}
+                className="w-full h-auto rounded-lg shadow-lg aspect-video object-cover"
+              />
+            </div>
+            
+            <div className="text-center mb-4 sm:mb-6">
+              <p className="text-sm sm:text-base md:text-lg text-red-800 font-medium mb-3 sm:mb-4 leading-relaxed">
+                Você acorda e já se sente derrotada antes mesmo do dia começar.<br/>
+                Olha no espelho e pensa: "Quem é essa mulher?"<br/>
+                Seu corpo não obedece mais você.<br/>
+                Sua mente não é mais a mesma.<br/>
+                Você se sente invisível, esquecida, como se tivesse perdido sua essência.
+              </p>
+              
+              <p className="text-base sm:text-lg md:text-xl font-bold text-red-900 mb-3 sm:mb-4">
+                E o pior: todo mundo fala que "é normal", que "faz parte da idade".
+              </p>
+              
+              <p className="text-lg sm:text-xl md:text-2xl font-black text-red-900 mb-4 sm:mb-6">
+                MENTIRA.
+              </p>
+              
+              <p className="text-sm sm:text-base md:text-lg text-red-800 font-medium mb-4 sm:mb-6 leading-relaxed">
+                Você não nasceu para ser refém dos seus hormônios.<br/>
+                Você não nasceu para se sentir prisioneira do próprio corpo.<br/>
+                Você não nasceu para aceitar uma vida pela metade.
+              </p>
             </div>
 
-            <div className="bg-accent p-4 md:p-6 rounded-lg text-center">
-              <p className="text-lg md:text-xl font-bold text-accent-foreground mb-2">ECONOMIA ANUAL: R$ 6.763</p>
-              <p className="text-sm text-accent-foreground">
-                Você economiza mais de R$ 6.700 por ano e ainda tem garantia de resultados em 21 dias
+            <div className="bg-red-200 p-3 sm:p-4 md:p-6 rounded-lg">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-900 text-center mb-3 sm:mb-4">
+                Agora me responda com sinceridade:
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg font-bold text-red-900 text-center mb-3 sm:mb-4 leading-relaxed">
+                Se eu te mostrasse um caminho 100% natural para você voltar a se sentir MULHER de novo... 
+                Para acordar disposta, dormir tranquila, se olhar no espelho e gostar do que vê...
+                Para voltar a ter prazer, energia, autoestima...
+              </p>
+              <p className="text-lg sm:text-xl md:text-2xl font-black text-red-900 text-center">
+                Isso mudaria sua vida?
               </p>
             </div>
           </div>
-        </section>
 
-        <section className="py-8 md:py-16 px-3 md:px-4 bg-muted/30">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)]">
-              Perguntas Frequentes
-            </h2>
+          <div className="text-center">
+            <p className="text-base sm:text-lg md:text-xl font-bold text-primary px-2">
+              Se sua resposta for <strong className="text-green-600">SIM,</strong> continue lendo...
+            </p>
+          </div>
+        </div>
+      </section>
 
-            <div className="space-y-4">
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-base md:text-lg mb-2">
-                    ❓ Quanto tempo leva para ver os primeiros resultados?
-                  </h3>
-                  <p className="text-sm md:text-base">
-                    Os primeiros resultados aparecem em 7 dias (você para de esquecer palavras). Em 14 dias, a
-                    concentração melhora significativamente. Em 21 dias, você tem controle emocional total.
-                  </p>
-                </CardContent>
-              </Card>
+      {/* MÉTODO OTIMIZADO - 3 PASSOS */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-r from-green-50 to-blue-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-primary mb-4 sm:mb-6 md:mb-8 font-[family-name:var(--font-space-grotesk)] px-2">
+            "Os 3 Passos Que Vão Te Libertar da Menopausa em 14 Dias"
+          </h2>
 
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-base md:text-lg mb-2">❓ Como funciona a garantia?</h3>
-                  <p className="text-sm md:text-base">
-                    Você tem 3 garantias: resultados em 7, 14 e 21 dias. Se qualquer uma falhar, devolvemos 100% do seu
-                    dinheiro + compensação. Sem perguntas, sem burocracia.
-                  </p>
-                </CardContent>
-              </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-secondary shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0 text-center">
+                <div className="bg-green-500 text-white rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-2xl font-bold">
+                  1
+                </div>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/151fac30-03bd-4410-a3c2-a454182eda4c.png"
+                    alt="Reset Hormonal Natural"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2 text-primary">RESET HORMONAL NATURAL</h3>
+                <p className="text-xs sm:text-sm leading-relaxed">
+                  Protocolo de 72h que 'reseta' seu sistema endócrino usando alimentos termogênicos específicos. Você vai seguir um protocolo natural que funciona como um "extintor" para os calorões.
+                </p>
+              </CardContent>
+            </Card>
 
-              <Card className="p-4 md:p-6">
-                <CardContent className="p-0">
-                  <h3 className="font-bold text-base md:text-lg mb-2">❓ Por quanto tempo tenho acesso?</h3>
-                  <p className="text-sm md:text-base">
-                    Acesso vitalício! Você pode consultar o material quantas vezes quiser, para sempre. Sem mensalidades
-                    ou taxas extras.
-                  </p>
-                </CardContent>
-              </Card>
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-secondary shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0 text-center">
+                <div className="bg-blue-500 text-white rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-2xl font-bold">
+                  2
+                </div>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/b022a12c-babb-4c9b-b90d-df5b9a08a60c.png"
+                    alt="Ativação Metabólica"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2 text-primary">ATIVAÇÃO METABÓLICA</h3>
+                <p className="text-xs sm:text-sm leading-relaxed">
+                  Sequência de chás e suplementos naturais que aceleram seu metabolismo em 40%. Um chá específico que você toma 1x por dia e que funciona como um "reset" no seu sistema hormonal.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="p-3 sm:p-4 md:p-6 border-l-4 border-secondary shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0 text-center">
+                <div className="bg-purple-500 text-white rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-2xl font-bold">
+                  3
+                </div>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/d9ee0045-db11-45e8-83e5-eba8d0773429.png"
+                    alt="Blindagem Anti-Sintomas"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2 text-primary">BLINDAGEM ANTI-SINTOMAS</h3>
+                <p className="text-xs sm:text-sm leading-relaxed">
+                  Rotina de manutenção que mantém você protegida para sempre. Receitas deliciosas que fazem seu metabolismo lembrar como funcionar direito.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="bg-accent/10 p-3 sm:p-4 md:p-6 rounded-lg">
+            <p className="text-sm sm:text-base md:text-xl font-bold text-primary leading-relaxed px-2">
+              Enquanto outros métodos apenas mascaram os sintomas... Nós eliminamos a raiz hormonal da menopausa
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* BENEFÍCIOS FINAIS OTIMIZADOS */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-muted/30">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-center text-primary mb-4 sm:mb-6 md:mb-12 font-[family-name:var(--font-space-grotesk)] px-2">
+            "Depois de Concluir o Protocolo Menopausa Leve, Você Finalmente Vai:"
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <Card className="p-3 sm:p-4 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/ac01a8ac-7387-4b9e-8203-c493dd2e7cec.png"
+                    alt="Dormir a noite inteira"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2">✅ Dormir a noite inteira sem acordar suando</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="p-3 sm:p-4 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/ae9b5790-efa1-40f9-9438-e1229ce7b6d8.png"
+                    alt="Usar qualquer roupa"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2">✅ Usar qualquer roupa sem medo dos calorões</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="p-3 sm:p-4 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/924352cd-fa82-44be-8a8d-03e03aa8930e.png"
+                    alt="Ver o número da balança diminuir"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2">✅ Ver o número da balança diminuir naturalmente</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="p-3 sm:p-4 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/bcb3830f-050c-46d1-9854-cd771d43e2a3.png"
+                    alt="Sentir vontade de fazer sexo"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2">✅ Sentir vontade de fazer sexo de novo</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="p-3 sm:p-4 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/71a87a4a-43fa-4a2c-b237-e5769a5e530b.png"
+                    alt="Ter energia para brincar"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2">✅ Ter energia para brincar com os netos</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="p-3 sm:p-4 text-center shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-0">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-3 sm:mb-4">
+                  <Image
+                    src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/f85eea43-65d3-488c-9f90-be56d83db683.png"
+                    alt="Se olhar no espelho e sorrir"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2">✅ Se olhar no espelho e sorrir para si mesma</h3>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* OFERTA COMPLETA OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-r from-blue-50 to-green-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-center text-primary mb-3 sm:mb-4 md:mb-8 font-[family-name:var(--font-space-grotesk)] px-2">
+            E tem muito mais!
+          </h2>
+          <h3 className="text-sm sm:text-base md:text-xl text-center text-accent mb-4 sm:mb-6 md:mb-10 font-semibold px-2">
+            Veja tudo que você vai receber para eliminar definitivamente a menopausa
+          </h3>
+
+          <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
+            {/* Produto Principal 1 OTIMIZADO */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
+                <Image
+                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/64878600-d0fd-48fb-a67d-7a54bea3302c.png"
+                  alt="Reset Hormonal em 14 Dias"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-lg sm:text-xl font-bold mb-2">Protocolo Menopausa Leve</h3>
+                <p className="text-sm sm:text-base text-gray-600 mb-2 leading-relaxed">
+                  Você receberá um plano simples e prático, com orientações personalizadas e diárias durante 14 dias para eliminar os sintomas da menopausa.
+                </p>
+                <span className="text-green-600 font-bold">Valor: R$ 97,00</span>
+              </div>
+            </div>
+
+            {/* Produto Principal 2 OTIMIZADO */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
+                <Image
+                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/e0263722-418c-4bcb-8d50-bb6f8fbcdc33.png"
+                  alt="80 Receitas Termogênicas Anti-Menopausa"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-lg sm:text-xl font-bold mb-2">80 Receitas Termogênicas Anti-Menopausa</h3>
+                <p className="text-sm sm:text-base text-gray-600 mb-2 leading-relaxed">
+                  80 receitas simples e nutritivas que ajudam a equilibrar os hormônios, combater calorões e melhorar o metabolismo.
+                </p>
+                <span className="text-green-600 font-bold">Valor: R$ 67,00</span>
+              </div>
+            </div>
+
+            {/* Produto Principal 3 OTIMIZADO */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
+                <Image
+                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/8370a9a8-7e60-4671-8a89-e463d3e3a57b.png"
+                  alt="40 Chás Detox Hormonal"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-lg sm:text-xl font-bold mb-2">40 Chás Detox Hormonal</h3>
+                <p className="text-sm sm:text-base text-gray-600 mb-2 leading-relaxed">
+                  Descubra os chás naturais mais poderosos para desinchar, acelerar o metabolismo e derreter gordura abdominal, tudo direto da sua cozinha.
+                </p>
+                <span className="text-green-600 font-bold">Valor: R$ 67,00</span>
+              </div>
             </div>
           </div>
-        </section>
 
-        <section id="oferta" className="py-8 md:py-16 px-3 md:px-4 bg-gradient-to-r from-secondary/20 to-accent/20">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-red-100 border-2 border-red-500 p-4 md:p-6 rounded-lg mb-6 md:mb-8">
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <Users className="w-6 h-6 text-red-600" />
-                <h3 className="text-lg md:text-xl font-bold text-red-700">🚨 ÚLTIMAS {vagasRestantes} VAGAS</h3>
+          {/* BÔNUS EXCLUSIVOS OTIMIZADOS */}
+          <div className="bg-yellow-50 border-2 border-yellow-300 p-4 sm:p-6 rounded-lg">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-yellow-800 mb-4 sm:mb-6">
+              AINDA NÃO ACABOU! Você também vai receber...
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg">
+                <Gift className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base">Cardápio Reset com Alimentos Funcionais</h4>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Descubra o que colocar (e o que tirar) do seu prato para reduzir os sintomas naturalmente sem dietas malucas.</p>
+                  <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R$ 47,00</span>
+                </div>
               </div>
-              <p className="text-sm md:text-base text-red-800 mb-2">Após esgotar, só no próximo mês por R$ 297</p>
-              <p className="text-xs md:text-sm font-bold text-red-900">
-                Limitamos para garantir suporte individualizado
-              </p>
+
+              <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg">
+                <Gift className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base">Protocolo da Libido Renovada</h4>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Ative o desejo sexual com pequenos hábitos que restauram o prazer, sem cremes, sem química, sem tabu.</p>
+                  <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R$ 67,00</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg">
+                <Gift className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base">Diário da Transformação 50+</h4>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Roteiro simples para aplicar o protocolo no seu ritmo, com marcações de progresso e lembretes práticos.</p>
+                  <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R$ 47,00</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg">
+                <Gift className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base">Manual do Sono Reparador</h4>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">O Manual do Sono Reparador revela as estratégias naturais e cientificamente comprovadas para acabar com a insônia, o sono picado e o cansaço crônico que a menopausa traz.</p>
+                  <span className="text-green-600 font-bold text-xs sm:text-sm">Valor: R$ 47,00</span>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4 md:mb-6 font-[family-name:var(--font-space-grotesk)]">
-              REATIVE SEUS 3 COMBUSTÍVEIS CEREBRAIS
-            </h2>
+      {/* RECAPITULAÇÃO COM PREÇOS OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-center text-primary mb-4 sm:mb-6 md:mb-8 font-[family-name:var(--font-space-grotesk)] px-2">
+            Veja tudo que você vai receber com o **Protocolo Menopausa Leve**
+          </h2>
 
-            <div className="bg-card p-4 md:p-6 rounded-lg mb-6 md:mb-8">
-              <div className="text-center mb-4">
-                <p className="text-sm text-muted-foreground line-through">De R$ 297 por</p>
-                <p className="text-3xl md:text-5xl font-bold text-secondary">R$ 37</p>
-                <p className="text-sm text-muted-foreground">ou 9x de R$ 5,02</p>
+          <div className="bg-gray-50 p-4 sm:p-6 rounded-lg mb-6 sm:mb-8">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base">Protocolo Menopausa Leve</span>
+                </div>
+                <span className="line-through text-gray-500 text-sm sm:text-base">R$ 97,00</span>
               </div>
-
-              <div className="space-y-2 text-sm text-left max-w-md mx-auto">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>✅ Sistema completo dos 3 combustíveis</span>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base">80 Receitas Termogênicas Anti-Menopausa</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>✅ 3 bônus exclusivos (valor R$ 291)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>✅ Garantia tripla blindada</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>✅ Acesso vitalício</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>✅ Resultados em 21 dias</span>
-                </div>
+                <span className="line-through text-gray-500 text-sm sm:text-base">R$ 67,00</span>
               </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base">40 Chás Detox Hormonal</span>
+                </div>
+                <span className="line-through text-gray-500 text-sm sm:text-base">R$ 67,00</span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-start gap-2">
+                  <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base">Cardápio Reset com Alimentos Funcionais</span>
+                </div>
+                <span className="line-through text-gray-500 text-sm sm:text-base">R$ 47,00</span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-start gap-2">
+                  <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base">Protocolo da Libido Renovada</span>
+                </div>
+                <span className="line-through text-gray-500 text-sm sm:text-base">R$ 67,00</span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-start gap-2">
+                  <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base">Diário da Transformação 50+</span>
+                </div>
+                <span className="line-through text-gray-500 text-sm sm:text-base">R$ 47,00</span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-start gap-2">
+                  <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base">Manual do Sono Reparador</span>
+                </div>
+                <span className="line-through text-gray-500 text-sm sm:text-base">R$ 47,00</span>
+              </div>
+              
+              <hr className="border-gray-300" />
+              
+              <div className="flex items-center justify-between text-base sm:text-lg font-bold">
+                <span>Tudo isso deveria custar:</span>
+                <span className="line-through text-red-500">R$ 486,00</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-lg sm:text-xl md:text-2xl font-bold mb-4 px-2">
+              Mas somente hoje você pode ter acesso ao <strong>"Protocolo Menopausa Leve"</strong> junto com todos os bônus por apenas
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* OFERTA FINAL COM PREÇO OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-r from-secondary/20 to-accent/20">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-red-100 border-2 border-red-500 p-3 sm:p-4 md:p-6 rounded-lg mb-4 sm:mb-6 md:mb-8">
+            <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-700 mb-2">
+              Essa oferta não vai ficar disponível por muito tempo, então aproveite agora!
+            </h3>
+          </div>
+
+          <div className="bg-card p-4 sm:p-6 md:p-8 rounded-lg mb-4 sm:mb-6 md:mb-8 shadow-lg">
+            <div className="text-center mb-4 sm:mb-6">
+              <p className="text-base sm:text-lg mb-2">Por apenas 8x de:</p>
+              <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-secondary mb-2">
+                R$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,34
+              </p>
+              <p className="text-base sm:text-lg md:text-xl">ou R$ 37,00 à vista</p>
             </div>
 
             <Button
               onClick={handleCheckout}
               size="lg"
-              className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-lg md:text-2xl px-6 md:px-12 py-4 md:py-6 pulse-glow mb-4"
+              className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base sm:text-lg md:text-xl px-4 sm:px-6 md:px-12 py-3 sm:py-4 md:py-6 pulse-glow mb-4 min-h-[48px] sm:min-h-[56px] md:min-h-[64px]"
             >
-              QUERO VOLTAR AO NORMAL EM 21 DIAS
+              <span className="text-center leading-tight">QUERO COMEÇAR O RESET HORMONAL HOJE</span>
             </Button>
 
-            <p className="text-xs md:text-sm text-muted-foreground mb-4">
-              🔒 Compra 100% segura • Garantia tripla blindada • Acesso imediato
-            </p>
+            <div className="text-center">
+              <Image
+                src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/compra-segura-1024x147-1.png"
+                alt="Compra Segura"
+                width={1024}
+                height={147}
+                className="mx-auto max-w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="bg-green-50 border border-green-200 p-3 md:p-4 rounded-lg">
-              <p className="text-sm md:text-base font-bold text-green-800">
-                💚 Mais de 15.000 mulheres já recuperaram sua vida normal
+      {/* PROCESSO DE COMPRA OTIMIZADO */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-primary mb-6 sm:mb-8 px-2">
+            Compre agora e receba seu acesso no e-mail imediatamente!
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            <div className="text-center">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <span className="text-lg sm:text-2xl">📧</span>
+              </div>
+              <h3 className="font-bold text-base sm:text-lg mb-2">ACESSE SEU E-MAIL</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Assim que finalizar sua compra, você vai receber seu acesso no email.
               </p>
-              <p className="text-xs md:text-sm text-green-700">
-                "Meu marido disse: 'A mulher que me casei voltou'" - Ana Paula, 52 anos
+            </div>
+
+            <div className="text-center">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <span className="text-lg sm:text-2xl">⬇️</span>
+              </div>
+              <h3 className="font-bold text-base sm:text-lg mb-2">ACESSE O PRODUTO</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Você vai receber todos os entregáveis junto com os bônus imediatamente para usar quando e como quiser.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <span className="text-lg sm:text-2xl">✅</span>
+              </div>
+              <h3 className="font-bold text-base sm:text-lg mb-2">TUDO PRONTO!</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Agora é só aplicar o Reset Hormonal em 14 Dias e retomar sua qualidade de vida
               </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <footer className="bg-muted py-6 md:py-8 px-3 md:px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-xs md:text-sm text-muted-foreground mb-2">
-              © 2024 Método dos 3 Combustíveis Cerebrais. Todos os direitos reservados.
-            </p>
-            <p className="text-xs text-muted-foreground">
-              Este produto não substitui o acompanhamento médico. Consulte sempre seu médico.
+      {/* DUAS OPÇÕES - OBJEÇÃO HANDLING OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-center text-primary mb-6 sm:mb-8 font-[family-name:var(--font-space-grotesk)] px-2">
+            "Agora Você Tem Duas Escolhas:"
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+            <Card className="p-4 sm:p-6 border-2 border-red-300 bg-red-50">
+              <CardContent className="p-0 text-center">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <span className="text-white text-lg sm:text-2xl">❌</span>
+                </div>
+                <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-red-700">ESCOLHA 1: Continuar Sofrendo</h3>
+                <p className="text-xs sm:text-sm md:text-base text-red-800 leading-relaxed">
+                  Ignorar tudo que acabou de ler e continuar acordando cansada, vivendo irritada, se sentindo invisível, pesando mais a cada mês, evitando intimidade... Aceitar que "é assim mesmo" e viver uma vida pela metade.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="p-4 sm:p-6 border-2 border-green-300 bg-green-50">
+              <CardContent className="p-0 text-center">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <span className="text-white text-lg sm:text-2xl">✅</span>
+                </div>
+                <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-green-700">ESCOLHA 2: Retomar Sua Vida</h3>
+                <p className="text-xs sm:text-sm md:text-base text-green-800 leading-relaxed">
+                  Começar HOJE o Reset Hormonal em 14 Dias e estar se sentindo mulher de novo. Acordar disposta, dormir tranquila, ter energia, autoestima, prazer... Voltar a ser VOCÊ.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <p className="text-base sm:text-lg md:text-xl font-bold text-primary mb-4 sm:mb-6 px-2">
+              Eu sei qual escolha faz mais sentido. E você também sabe.
             </p>
           </div>
-        </footer>
-      </div>
+        </div>
+      </section>
+
+      {/* AUTORIDADE - DRA. MARIANA FERNANDES OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-center text-primary mb-4 sm:mb-6 md:mb-8 font-[family-name:var(--font-space-grotesk)] px-2">
+            Quem criou o Protocolo Menopausa Leve?
+          </h2>
+
+          <div className="bg-card p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
+            <div className="flex flex-col md:flex-row items-center gap-4 sm:gap-6">
+              <div className="flex-shrink-0">
+                <Image
+                  src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/0be4d422-17fb-4469-94c1-65abb89c28df.png"
+                  alt="Dra. Mariana Fernandes"
+                  width={160}
+                  height={160}
+                  className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-secondary"
+                />
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-2">Dra. Mariana Fernandes</h3>
+                <p className="text-secondary font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Especialista em Medicina Integrativa e Fitoterapia</p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm mb-3 sm:mb-4">
+                  <div className="flex items-center gap-2">
+                    <Award className="w-3 h-3 sm:w-4 sm:h-4 text-secondary flex-shrink-0" />
+                    <span>15+ anos de experiência</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 text-secondary flex-shrink-0" />
+                    <span>Criadora do Método Protocolo Menopausa Leve</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="w-3 h-3 sm:w-4 sm:h-4 text-secondary flex-shrink-0" />
+                    <span>28.000+ mulheres transformadas</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-secondary flex-shrink-0" />
+                    <span>Método natural comprovado</span>
+                  </div>
+                </div>
+
+                <div className="bg-secondary/10 p-3 sm:p-4 rounded-lg">
+                  <p className="text-xs sm:text-sm md:text-base italic leading-relaxed">
+                    "Médica especialista em Medicina Integrativa e Fitoterapia com mais de 15 anos de experiência que já ajudou mais de 28 mil mulheres a aliviar os sintomas da menopausa. Ela acredita que o intestino é essencial para a regulação hormonal e, com base nisso, criou o Método Protocolo Menopausa Leve — um protocolo natural, sem hormônios, que usa alimentos termogênicos e ajustes de rotina para equilibrar o corpo. Milhares de mulheres já têm vivido com mais leveza, autonomia e bem-estar."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GARANTIA OTIMIZADA */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-r from-green-50 to-blue-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-primary mb-4 sm:mb-6 md:mb-8 font-[family-name:var(--font-space-grotesk)] px-2">
+            "Garantia Blindada: Funciona ou Seu Dinheiro Volta"
+          </h2>
+
+          <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
+            <div className="flex-1">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-green-700 mb-3 sm:mb-4">
+                GARANTIA BLINDADA DE 7 DIAS
+              </h3>
+              <p className="text-xs sm:text-sm md:text-base mb-3 sm:mb-4 leading-relaxed">
+                Você tem <strong>7 dias para testar tudo no conforto da sua casa</strong>. Se não ficar 100% satisfeita - se não sentir diferença, se não gostar, se achar que não vale a pena - é só mandar um email e devolvemos <strong>cada centavo</strong>.
+              </p>
+              <p className="text-xs sm:text-sm md:text-base font-bold text-green-800">
+                Sem pergunta. Sem burocracia. Sem enrolação.<br/>
+                O risco é todo nosso. O benefício é todo seu.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <Image
+                src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/garantiaPrancheta-1-1.png"
+                alt="Garantia de 7 dias"
+                width={192}
+                height={192}
+                className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="bg-green-100 border-2 border-green-500 p-3 sm:p-4 md:p-6 rounded-lg mt-6 sm:mt-8">
+            <p className="text-sm sm:text-base md:text-lg font-bold text-green-800">
+              VOCÊ NÃO TEM NADA A PERDER E SUA VIDA NORMAL PARA RECUPERAR
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINAL OTIMIZADO */}
+      <section className="py-6 sm:py-8 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-r from-secondary/20 to-accent/20">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-red-100 border-2 border-red-500 p-3 sm:p-4 md:p-6 rounded-lg mb-4 sm:mb-6 md:mb-8">
+            <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-700 mb-2">
+              Essa oferta não vai ficar disponível por muito tempo, então aproveite agora!
+            </h3>
+          </div>
+
+          <div className="bg-card p-4 sm:p-6 md:p-8 rounded-lg mb-4 sm:mb-6 md:mb-8 shadow-lg">
+            <div className="text-center mb-4 sm:mb-6">
+              <p className="text-base sm:text-lg mb-2">Por apenas 8x de:</p>
+              <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-secondary mb-2">
+                R$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,34
+              </p>
+              <p className="text-base sm:text-lg md:text-xl">ou R$ 37,00 à vista</p>
+            </div>
+
+            <Button
+              onClick={handleCheckout}
+              size="lg"
+              className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base sm:text-lg md:text-xl px-4 sm:px-6 md:px-12 py-3 sm:py-4 md:py-6 pulse-glow mb-4 min-h-[48px] sm:min-h-[56px] md:min-h-[64px]"
+            >
+              <span className="text-center leading-tight">QUERO COMEÇAR O RESET HORMONAL HOJE</span>
+            </Button>
+
+            <div className="text-center">
+              <Image
+                src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/compra-segura-1024x147-1.png"
+                alt="Compra Segura"
+                width={1024}
+                height={147}
+                className="mx-auto max-w-full h-auto"
+              />
+            </div>
+          </div>
+
+          <div className="bg-green-50 border border-green-200 p-3 sm:p-4 rounded-lg">
+            <p className="text-sm sm:text-base font-bold text-green-800">
+              💚 Mais de 28.000 mulheres já se libertaram dos sintomas da menopausa
+            </p>
+            <p className="text-xs sm:text-sm text-green-700 leading-relaxed">
+              "Estava gastando R$ 800 por mês em hormônios. Em 10 dias os suores pararam e economizei uma fortuna!" - Ana Paula Santos, 48 anos
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER OTIMIZADO */}
+      <footer className="bg-muted py-4 sm:py-6 md:py-8 px-2 sm:px-3 md:px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-xs md:text-sm text-muted-foreground mb-2 leading-relaxed">
+            <strong>Aviso Legal:</strong> As informações disponibilizadas neste site têm caráter exclusivamente educacional e informativo. O produto apresentado não garante resultados específicos, uma vez que estes podem variar conforme as particularidades de cada indivíduo. Recomenda-se a consulta com um profissional qualificado para orientações complementares. Todos os direitos reservados.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            © 2024 Protocolo Menopausa Leve em 14 Dias. Todos os direitos reservados.
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
