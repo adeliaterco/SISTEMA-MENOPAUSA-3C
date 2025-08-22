@@ -829,9 +829,9 @@ export default function MenopausaLanding() {
 
           <div className="bg-card p-4 sm:p-6 md:p-8 rounded-lg mb-4 sm:mb-6 md:mb-8 shadow-lg">
             <div className="text-center mb-4 sm:mb-6">
-              <p className="text-base sm:text-lg mb-2">Por apenas 8x de:</p>
+              <p className="text-base sm:text-lg mb-2">Por apenas 9x de:</p>
               <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-secondary mb-2">
-                R$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,34
+                R$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,02
               </p>
               <p className="text-base sm:text-lg md:text-xl">ou R$ 37,00 à vista</p>
             </div>
@@ -1041,9 +1041,9 @@ export default function MenopausaLanding() {
 
           <div className="bg-card p-4 sm:p-6 md:p-8 rounded-lg mb-4 sm:mb-6 md:mb-8 shadow-lg">
             <div className="text-center mb-4 sm:mb-6">
-              <p className="text-base sm:text-lg mb-2">Por apenas 8x de:</p>
+              <p className="text-base sm:text-lg mb-2">Por apenas 9x de:</p>
               <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-secondary mb-2">
-                R$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,34
+                R$<span className="text-5xl sm:text-7xl md:text-9xl">5</span>,02
               </p>
               <p className="text-base sm:text-lg md:text-xl">ou R$ 37,00 à vista</p>
             </div>
