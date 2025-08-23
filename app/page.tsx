@@ -312,7 +312,7 @@ export default function MenopausaLanding() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-center mb-6 sm:mb-8">
             <div>
               <Image
-                src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/protocolo-mopausa-leve-1.png"
+                src="https://nutricaoalimentos.shop/wp-content/uploads/2025/08/9e8676ef-079d-4cdb-abf9-76b1f5b48cc7.png"
                 alt="Protocolo Menopausa Leve - Capa do Método"
                 width={400}
                 height={480}
