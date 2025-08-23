@@ -368,12 +368,6 @@ export default function MenopausaLanding() {
                 <li>
                   🧘‍♀️ <strong>Técnicas de Relaxamento</strong> - Para controlar o estresse
                 </li>
-                <li>
-                  📱 <strong>App de Acompanhamento</strong> - Monitore seu progresso
-                </li>
-                <li>
-                  👥 <strong>Grupo VIP no WhatsApp</strong> - Suporte e motivação
-                </li>
               </ul>
             </CardContent>
           </Card>
