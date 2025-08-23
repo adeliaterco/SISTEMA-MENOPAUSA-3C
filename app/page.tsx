@@ -163,7 +163,7 @@ export default function MenopausaLanding() {
               <div className="bg-white p-3 sm:p-4 rounded-lg shadow-lg border-l-4 border-green-500">
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle className="text-green-500 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                  <span className="font-semibold text-sm sm:text-base">Método 100% Natural</span>
+                  <span className="font-semibold text-sm sm:text-base">O Protocolo dos 3 Pilares que Reequilibra Seus Hormônios em 14 Dias (Sem Depender de Remédios Caros)</span>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600">
                   Sem hormônios sintéticos ou medicamentos com efeitos colaterais
