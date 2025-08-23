@@ -176,7 +176,7 @@ export default function MenopausaLanding() {
                   <span className="font-semibold text-sm sm:text-base">Resultados em 14 Dias</span>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600">
-                  Protocolo testado e aprovado por milhares de mulheres
+                  Protocolo testado e aprovado por 15.000 mulheres
                 </p>
               </div>
 
